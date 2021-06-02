@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "439888028250",
+    "project_id": "blood-donation-fd5b0",
+    "storage_bucket": "blood-donation-fd5b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439888028250:android:32f5ae9d30e90917df2e63",
+        "android_client_info": {
+          "package_name": "com.mristudio.blooddonation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "439888028250-kirfsecc8ev3brafaavrsqbv05o12vk6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mristudio.blooddonation",
+            "certificate_hash": "e1063c882580fde1be0333746c941ce903cecbe7"
+          }
+        },
+        {
+          "client_id": "439888028250-suflo2bl7o0s1e34vvf11p7qpemmgmgb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNXLNDSMVuBijBbYI6BjAa2UFEHTmthIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "439888028250-suflo2bl7o0s1e34vvf11p7qpemmgmgb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

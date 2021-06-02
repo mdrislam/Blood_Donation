@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:padding="@dimen/dimen_3dp"
+    android:id="@+id/rootProfileLayout"
+    android:background="@drawable/card_shadow"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:id="@+id/bankcardId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:id="@+id/layoutClick"
+                android:gravity="start">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/colorful_profile"
+                        android:padding="10dp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="start"
+                    android:orientation="vertical"
+                    android:padding="3dp">
+                    <TextView
+                        android:id="@+id/profielNameTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:text="Xyz Hossain " />
+                    <TextView
+                        android:id="@+id/emailaddressTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="normal"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textAlignment="viewStart"
+                        android:text="xyz@gmail.com "
+                        android:gravity="start" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/moreOption"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_more_vert"
+        android:background="@android:color/transparent"
+        android:layout_centerInParent="true"
+        android:tint="@color/colorPrimary"
+        android:layout_alignParentRight="true"/>
+
+
+
+</RelativeLayout>
