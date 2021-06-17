@@ -1,21 +1,17 @@
-package com.mristudio.blooddonation.fragment;
+package com.mristudio.blooddonation.ui.fragment;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -28,10 +24,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mristudio.blooddonation.R;
-import com.mristudio.blooddonation.adapter.AllUserListAdapter;
 import com.mristudio.blooddonation.adapter.Slider_Pager_Adapter;
 import com.mristudio.blooddonation.model.ImageSliderData;
 import com.mristudio.blooddonation.model.UserInformation;
+import com.mristudio.blooddonation.ui.activity.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +35,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
+import static com.mristudio.blooddonation.ui.activity.MainActivity.bottomNavigationView;
+import static com.mristudio.blooddonation.ui.activity.MainActivity.fm;
+import static com.mristudio.blooddonation.ui.activity.MainActivity.toolbar;
+import static com.mristudio.blooddonation.ui.activity.MainActivity.toolbarHomePageLyt;
 
 public class HomeFragment extends Fragment {
 
@@ -55,8 +55,6 @@ public class HomeFragment extends Fragment {
     private DatabaseReference sliderImageRef;
     private DatabaseReference adminRef;
     private DatabaseReference generalUserRef;
-    private ChangeFragment changeFragment;
-
 
 
     public HomeFragment() {
@@ -70,14 +68,10 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         initView(view);
         setImageSlider();
+        setHasOptionsMenu(true);
         return view;
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        changeFragment= (ChangeFragment) context;
-    }
 
     /**
      * Set Slider Image data
@@ -112,6 +106,16 @@ public class HomeFragment extends Fragment {
 
     }
 
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+
+        MainActivity.toolbar_Hompage_titleTV.setText("Campaign");
+        toolbarHomePageLyt.setVisibility(View.VISIBLE);
+        menu.findItem(R.id.toolbar_settings).setVisible(false);
+        toolbar.setNavigationIcon(null);
+        super.onPrepareOptionsMenu(menu);
+    }
+
     /**
      * Initialize All HomeView
      *
@@ -137,7 +141,8 @@ public class HomeFragment extends Fragment {
         lytPostRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            changeFragment.callPostRequestFragment(new PostRequestFragment());
+
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PostRequestFragment()).addToBackStack(null).commit();
             }
         });
 
@@ -227,7 +232,5 @@ public class HomeFragment extends Fragment {
         }
     }
 
-public interface ChangeFragment{
-        void callPostRequestFragment(PostRequestFragment postRequestFragment);
-}
+
 }

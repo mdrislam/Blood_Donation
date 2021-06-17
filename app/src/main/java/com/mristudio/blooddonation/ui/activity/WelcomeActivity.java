@@ -1,4 +1,4 @@
-package com.mristudio.blooddonation.activity;
+package com.mristudio.blooddonation.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -9,16 +9,15 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.mristudio.blooddonation.R;
-import com.mristudio.blooddonation.fragment.WelcomeScreenFragmentOne;
-import com.mristudio.blooddonation.fragment.WelcomeScreenFragmentThree;
-import com.mristudio.blooddonation.fragment.WelcomeScreenFragmentTwo;
+import com.mristudio.blooddonation.ui.fragment.WelcomeScreenFragmentOne;
+import com.mristudio.blooddonation.ui.fragment.WelcomeScreenFragmentThree;
+import com.mristudio.blooddonation.ui.fragment.WelcomeScreenFragmentTwo;
 import com.mristudio.blooddonation.utility.IntroPrefManager;
 
 public class WelcomeActivity extends AppCompatActivity implements Animation.AnimationListener {

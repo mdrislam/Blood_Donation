@@ -5,7 +5,7 @@
     android:layout_margin="4dp"
     android:padding="@dimen/dimen_3dp"
     android:id="@+id/rootProfileLayout"
-    android:background="@drawable/card_shadow"
+    android:background="@drawable/shadow_shape"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -34,7 +34,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/colorful_profile"
+                        android:src="@drawable/male"
                         android:padding="10dp" />
 
                 </LinearLayout>
@@ -53,13 +53,13 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:text="Xyz Hossain " />
                     <TextView
-                        android:id="@+id/emailaddressTv"
+                        android:id="@+id/bloodGorupTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="normal"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textAlignment="viewStart"
-                        android:text="xyz@gmail.com "
+                        android:text="A+ "
                         android:gravity="start" />
                 </LinearLayout>
 
@@ -68,15 +68,6 @@
 
 
     </LinearLayout>
-    <ImageButton
-        android:id="@+id/moreOption"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_more_vert"
-        android:background="@android:color/transparent"
-        android:layout_centerInParent="true"
-        android:tint="@color/colorPrimary"
-        android:layout_alignParentRight="true"/>
 
 
 

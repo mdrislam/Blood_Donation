@@ -1,3 +1,106 @@
 <resources>
     <string name="app_name">Blood Donation</string>
+    <string name="txt_next">Next</string>
+    <string name="txt_wc2">"To give blood you need neither extra strength nor extra food, and you will save a life.” “If you're a blood donor, you're a hero to someone, somewhere, who received your gracious gift of life.” “A bottle of blood saved my life, was it yours.” “Every blood donor is a life saver."</string>
+    <string name="txt_start">Start</string>
+    <string name="txt_forgot_passwort"> <u>Forgot Password?</u></string>
+    <string name="let_us_know_about_you">Let Us Know<br /> About You</string>
+    <string name="txt_contact">Contact<br /> Inforation</string>
+    <string name="txt_blood_group">What is your <br /> Blood Group</string>
+    <string name="txt_Weaight">How Much Do<br /> You Weight</string>
+    <string name="txt_gender">What is<br /> Your Gender</string>
+    <string name="txt_address">Where Do<br /> You Live?</string>
+    <string name="txt_birthday">How old are <br /> You?</string>
+
+    <string name="txt_messsage_one">Provide your real name for your<br /> identity your name will be used<br /> for Search</string>
+    <string name="txt_messsage_two">Please provide correct phone no.<br /> This information will keep safe </string>
+    <string name="txt_messsage_three">Your blood group need to be<br /> if you do not know about it.<br />Please contact nearest Clinic </string>
+    <string name="txt_messsage_four">Note: You can not donate blood<br /> if you are under weaight.<br />Minimum weaight for donation <br />required <b>50 kg</b> </string>
+    <string name="up_50_kg"><![CDATA[< 50 KG]]></string>
+    <string name="down_50_kg"><![CDATA[> 50 KG]]></string>
+    <string name="txt_messsage_five">Defining your gender will let us<br /> khow bring new features for<br /> mothers health care.</string>
+    <string name="txt_messsage_six">Please provide correct address<br /> This information will keep safe</string>
+    <string name="txt_messsage_seven">Correct Birthdate give you best<br /> Experience with the Comunity<br />Do not hide it.</string>
+    <string name="txt_messsage_eight">Please do no use a model or<br /> Avatar. Please Keep faith on <br />yourself you are beautiful too.</string>
+    <string name="title_home">Home</string>
+    <string name="title_messaging">Message</string>
+    <string name="title_notification">Notification</string>
+    <string name="title_Profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_menu">Menu</string>
+    <string name="title_activity_user_list">UserListActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="schedule"><u>Schedule</u></string>
+
+    <string-array name="bd_districts">
+        <item>Dhaka</item>
+        <item>Faridpur</item>
+        <item>Gazipur</item>
+        <item>Gopalganj</item>
+        <item>Jamalpur</item>
+        <item>Kishoreganj</item>
+        <item>Madaripur</item>
+        <item>Manikganj</item>
+        <item>Munshiganj</item>
+        <item>Mymensingh</item>
+        <item>Narayanganj</item>
+        <item>Narsingdi</item>
+        <item>Netrokona</item>
+        <item>Rajbari</item>
+        <item>Shariatpur</item>
+        <item>Sherpur</item>
+        <item>Tangail</item>
+        <item>Bogura</item>
+        <item>Joypurhat</item>
+        <item>Naogaon</item>
+        <item>Natore</item>
+        <item>Nawabganj</item>
+        <item>Pabna</item>
+        <item>Rajshahi</item>
+        <item>Sirajgonj</item>
+        <item>Dinajpur</item>
+        <item>Gaibandha</item>
+        <item>Kurigram</item>
+        <item>Lalmonirhat</item>
+        <item>Nilphamari</item>
+        <item>Panchagarh</item>
+        <item>Rangpur</item>
+        <item>Thakurgaon</item>
+        <item>Barguna</item>
+        <item>Barishal</item>
+        <item>Bhola</item>
+        <item>Jhalokati</item>
+        <item>Patuakhali</item>
+        <item>Pirojpur</item>
+        <item>Bandarban</item>
+        <item>Brahmanbaria</item>
+        <item>Chandpur</item>
+        <item>Chattogram</item>
+        <item>Cumilla</item>
+        <item>Cox Bazar</item>
+        <item>Feni</item>
+        <item>Khagrachari</item>
+        <item>Lakshmipur</item>
+        <item>Noakhali</item>
+        <item>Rangamati</item>
+        <item>Habiganj</item>
+        <item>Maulvibazar</item>
+        <item>Sunamganj</item>
+        <item>Sylhet</item>
+        <item>Bagerhat</item>
+        <item>Chuadanga</item>
+        <item>Jashore</item>
+        <item>Jhenaidah</item>
+        <item>Khulna</item>
+        <item>Kushtia</item>
+        <item>Magura</item>
+        <item>Meherpur</item>
+        <item>Narail</item>
+        <item>Satkhira</item>
+    </string-array>
 </resources>

@@ -1,4 +1,4 @@
-package com.mristudio.blooddonation.activity;
+package com.mristudio.blooddonation.ui.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,10 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mristudio.blooddonation.R;
 import com.mristudio.blooddonation.adapter.AdminTransectionAdapter;
-import com.mristudio.blooddonation.adapter.AllUserListAdapter;
 import com.mristudio.blooddonation.model.AdminDataModel;
 import com.mristudio.blooddonation.model.ImageSliderData;
-import com.mristudio.blooddonation.model.UserInformation;
 
 import java.util.ArrayList;
 import java.util.List;

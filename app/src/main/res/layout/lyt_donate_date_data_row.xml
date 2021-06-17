@@ -5,7 +5,6 @@
     android:layout_margin="4dp"
     android:padding="@dimen/dimen_3dp"
     android:id="@+id/rootProfileLayout"
-    android:background="@drawable/shadow_shape"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -19,7 +18,8 @@
             android:clickable="true"
             android:id="@+id/bankcardId"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:cardElevation="@dimen/_10sdp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -31,12 +31,13 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical">
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:src="@drawable/male"
-                        android:padding="10dp" />
-
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_margin="1dp"
+                        android:src="@drawable/female_icon"
+                        android:visibility="visible" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -50,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                         android:text="Xyz Hossain " />
                     <TextView
                         android:id="@+id/bloodGorupTV"
@@ -61,6 +62,15 @@
                         android:textAlignment="viewStart"
                         android:text="A+ "
                         android:gravity="start" />
+                    <TextView
+                        android:id="@+id/lastBloodDonateDateTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="normal"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textAlignment="viewStart"
+                        android:text="20/10/1998 "
+                        android:gravity="start" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -69,6 +79,14 @@
 
     </LinearLayout>
 
-
+    <ImageButton
+        android:id="@+id/moreOptionID"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_more_vert"
+        android:background="@android:color/transparent"
+        android:layout_centerInParent="true"
+        android:tint="@color/colorPrimary"
+        android:layout_alignParentRight="true"/>
 
 </RelativeLayout>

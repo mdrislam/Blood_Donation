@@ -4,7 +4,7 @@
     xmlns:card_view="http://schemas.android.com/tools"
     android:id="@+id/allPdfRootLayoutCardView"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/slider_height"
+    android:layout_height="180dp"
     app:cardCornerRadius="8dp"
     app:cardUseCompatPadding="true"
     card_view:elevation="5dp">
@@ -13,6 +13,8 @@
         android:id="@+id/rootRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+
 
         <ImageView
             android:id="@+id/sliderImageView"
@@ -71,7 +73,13 @@
             </RelativeLayout>
         </LinearLayout>
 
-
+        <ImageButton
+            android:id="@+id/deleteButtonIB"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/button_circle__fill_shape"
+            android:src="@drawable/ic_baseline_cancel_24"
+            android:layout_alignParentRight="true"/>
     </RelativeLayout>
 
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/red_light"/>
+    <solid android:color="@color/cart_highlighted_txt_color"/>
 
     <stroke android:width="3dp"
-        android:color="@color/red_light"
+        android:color="@color/cart_highlighted_txt_color"
         />
 
     <padding android:left="1dp"

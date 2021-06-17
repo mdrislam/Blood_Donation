@@ -1,10 +1,9 @@
-package com.mristudio.blooddonation.activity;
+package com.mristudio.blooddonation.ui.activity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import android.util.Log;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,17 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
 import com.mristudio.blooddonation.R;
 import com.mristudio.blooddonation.adapter.AllUserListAdapter;
-import com.mristudio.blooddonation.adapter.SliderUpdateAdapter;
 import com.mristudio.blooddonation.model.AdminDataModel;
 import com.mristudio.blooddonation.model.ImageSliderData;
 import com.mristudio.blooddonation.model.UserInformation;

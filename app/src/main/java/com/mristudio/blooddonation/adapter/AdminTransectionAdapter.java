@@ -1,4 +1,4 @@
-package com.mristudio.massnundoa.adapter;
+package com.mristudio.blooddonation.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -18,27 +17,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.mristudio.massnundoa.R;
-import com.mristudio.massnundoa.activity.AdminTransectionActivity;
-import com.mristudio.massnundoa.model.AdminDataModel;
-
+import com.mristudio.blooddonation.R;
+import com.mristudio.blooddonation.model.AdminDataModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
 public class AdminTransectionAdapter extends RecyclerView.Adapter<AdminTransectionAdapter.OnViewHoalder> {
 
 
-    private static final String TAG = AdminTransectionAdapter.class.getSimpleName();
-    private ArrayList<AdminDataModel> alladmins;
+    private static final String TAG ="AdminTransectionAdapter";
+    private List<AdminDataModel> alladmins;
     private static Context mContext;
     private static AdminViewClick rootLayoutClick;
     static AlertDialog buttonAlertDialog;
 
 
-    public AdminTransectionAdapter(ArrayList<AdminDataModel> alladmins, Context mContext) {
+    public AdminTransectionAdapter(List<AdminDataModel> alladmins, Context mContext) {
 
         this.alladmins = alladmins;
         this.mContext = mContext;
@@ -50,7 +47,7 @@ public class AdminTransectionAdapter extends RecyclerView.Adapter<AdminTransecti
     @Override
     public OnViewHoalder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.lyt_profile_data_row, viewGroup, false);
+                .inflate(R.layout.lyt_admin_profile_data_row, viewGroup, false);
 
         return new OnViewHoalder(view);
     }
@@ -61,7 +58,7 @@ public class AdminTransectionAdapter extends RecyclerView.Adapter<AdminTransecti
         Log.e(TAG, "Size  = " + alladmins.get(position).getName());
 
         hoalder.profielNameTv.setText(alladmins.get(position).getName() + "(" + alladmins.get(position).getUserType() + ")");
-        hoalder.emailaddressTv.setText(alladmins.get(position).getEmail());
+        hoalder.bloodGorupTV.setText(alladmins.get(position).getEmail());
 
         hoalder.layoutClick.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,12 +69,9 @@ public class AdminTransectionAdapter extends RecyclerView.Adapter<AdminTransecti
         hoalder.moreOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (position != 0) {
-                    openPopUpMenu(alladmins.get(position));
-                } else {
-                    Toasty.warning(mContext, "You are not able to Delete Root Account ! ").show();
 
-                }
+                    openPopUpMenu(alladmins.get(position));
+
             }
         });
     }
@@ -145,7 +139,7 @@ public class AdminTransectionAdapter extends RecyclerView.Adapter<AdminTransecti
 
         private RelativeLayout rootProfileLayout;
         private LinearLayout layoutClick;
-        private TextView profielNameTv, emailaddressTv;
+        private TextView profielNameTv, bloodGorupTV;
         private ImageButton moreOption;
 
 
@@ -153,8 +147,8 @@ public class AdminTransectionAdapter extends RecyclerView.Adapter<AdminTransecti
             super(itemView);
 
             profielNameTv = itemView.findViewById(R.id.profielNameTv);
-            emailaddressTv = itemView.findViewById(R.id.emailaddressTv);
-            moreOption = (ImageButton) itemView.findViewById(R.id.moreOption);
+            bloodGorupTV = itemView.findViewById(R.id.bloodGorupTV);
+            moreOption = (ImageButton) itemView.findViewById(R.id.moreOptionID);
             layoutClick = (LinearLayout) itemView.findViewById(R.id.layoutClick);
         }
 

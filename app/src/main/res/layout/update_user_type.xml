@@ -24,12 +24,11 @@
             android:textStyle="bold" />
         <ImageButton
             android:id="@+id/cancel_button"
-            android:layout_width="@dimen/dimen_40dp"
-            android:layout_height="@dimen/dimen_40dp"
-            android:src="@drawable/ic_cancel"
+            android:layout_width="@dimen/_40dp"
+            android:layout_height="@dimen/_40dp"
+            android:src="@drawable/ic_baseline_cancel_24"
             android:background="@android:color/transparent"
             android:tint="@color/red"
-
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
 
@@ -41,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
-        android:background="@drawable/boarder_shape"
+        android:background="@drawable/select_ractangle_shape"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="5dp">
@@ -65,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:text="Admin"
                     android:textStyle="bold"
-                    android:textColor="@color/testcolorblue"
+                    android:textColor="@color/red_light500"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:checked="true"/>
                 <RadioButton
@@ -74,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:text="Post Manager"
                     android:textStyle="bold"
-                    android:textColor="@color/testcolorblue"
+                    android:textColor="@color/red_light500"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:checked="false"/>
 

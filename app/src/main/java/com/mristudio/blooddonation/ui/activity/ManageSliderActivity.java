@@ -1,4 +1,4 @@
-package com.mristudio.blooddonation.activity;
+package com.mristudio.blooddonation.ui.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

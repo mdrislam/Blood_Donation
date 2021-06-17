@@ -1,75 +1,105 @@
 package com.mristudio.blooddonation.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mristudio.blooddonation.R;
+import com.mristudio.blooddonation.model.ImageSliderData;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BloodGroupSelectedAdapter extends RecyclerView.Adapter<BloodGroupSelectedAdapter.BloodGroupSelectedViewHoalder> {
-    private List<String> bloodNames = new ArrayList<>();
+public class SliderUpdateAdapter extends RecyclerView.Adapter<SliderUpdateAdapter.UpdateSliderViewHoalder> {
+    private List<ImageSliderData> sliderList = new ArrayList<>();
     private Context context;
-    private BloodToogleButtonClick bloodToogleButtonClick;
-    private int selsctPosition = -1;
+    private SliderImgesClick sliderImgesClick;
 
-    public BloodGroupSelectedAdapter(Context context, List<String> bloodNames) {
+
+    public SliderUpdateAdapter(Context context, List<ImageSliderData> sliderList) {
         this.context = context;
-        this.bloodNames = bloodNames;
-        bloodToogleButtonClick= (BloodToogleButtonClick) context;
+        this.sliderList = sliderList;
+        sliderImgesClick = (SliderImgesClick) context;
     }
 
     @NonNull
     @Override
-    public BloodGroupSelectedViewHoalder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.blood_group_row, parent, false);
-        return new BloodGroupSelectedViewHoalder(view);
+    public UpdateSliderViewHoalder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.update_slider_image_row, parent, false);
+        return new UpdateSliderViewHoalder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BloodGroupSelectedViewHoalder holder, int position) {
-        holder.bloodNameTV.setText(bloodNames.get(position));
-        holder.bloodNameRootLyt.setOnClickListener(new View.OnClickListener() {
+    public void onBindViewHolder(@NonNull UpdateSliderViewHoalder holder, int position) {
+
+        //  holder.sliderImageView.setImageBitmap(sliderList.get(position).getImgUrl());
+        Picasso.get().load(sliderList.get(position).getImgUrl()).into(holder.sliderImageView);
+
+        holder.sliderHeadingTV.setText(sliderList.get(position).getHeadline());
+        holder.createSliderByNameTV.setText(sliderList.get(position).getCreateBy());
+        holder.slidepostingTimeTV.setText(sliderList.get(position).getCreateAt());
+        holder.rootRelativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selsctPosition = position;
-                notifyDataSetChanged();
-                bloodToogleButtonClick.seLectedBloodGroup(bloodNames.get(position));
+                sliderImgesClick.clickSliderImages(sliderList.get(position));
             }
         });
-        if (selsctPosition == position) {
-            holder.bloodNameRootLyt.setBackground(context.getResources().getDrawable(R.drawable.button_circle__fill_shape));
-            holder.bloodNameTV.setTextColor(context.getResources().getColor(R.color.white));
-        } else {
-            holder.bloodNameRootLyt.setBackground(context.getResources().getDrawable(R.drawable.button_circle_shape));
-            holder.bloodNameTV.setTextColor(context.getResources().getColor(R.color.red_light));
-        }
+        holder.deleteButtonIB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sliderImgesClick.clickSliderImagesDelete(sliderList.get(position));
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
-        return bloodNames.size();
+        return sliderList.size();
     }
 
-    public class BloodGroupSelectedViewHoalder extends RecyclerView.ViewHolder {
-        private RelativeLayout bloodNameRootLyt;
-        private TextView bloodNameTV;
+    public class UpdateSliderViewHoalder extends RecyclerView.ViewHolder {
+        private RelativeLayout rootRelativeLayout;
+        private ImageView sliderImageView;
+        private TextView sliderHeadingTV, createSliderByNameTV, slidepostingTimeTV;
+        private ImageButton deleteButtonIB;
 
-        public BloodGroupSelectedViewHoalder(@NonNull View itemView) {
+        public UpdateSliderViewHoalder(@NonNull View itemView) {
             super(itemView);
-            bloodNameRootLyt = itemView.findViewById(R.id.bloodNameRootLyt);
-            bloodNameTV = itemView.findViewById(R.id.bloodNameTV);
+            rootRelativeLayout = itemView.findViewById(R.id.rootRelativeLayout);
+            sliderImageView = itemView.findViewById(R.id.sliderImageView);
+            sliderHeadingTV = itemView.findViewById(R.id.sliderHeadingTV);
+            createSliderByNameTV = itemView.findViewById(R.id.createSliderByNameTV);
+            slidepostingTimeTV = itemView.findViewById(R.id.slidepostingTimeTV);
+            deleteButtonIB = itemView.findViewById(R.id.deleteButtonIB);
+
         }
     }
-    public interface BloodToogleButtonClick{
-         void seLectedBloodGroup(String groupName);
+
+    /**
+     * Decode Based64 String TO Image
+     */
+    public Bitmap getDecoded64StringFromBitmapImage(String imageString) {
+        byte[] imageBytes = Base64.decode(imageString, Base64.DEFAULT);
+        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+        return decodedImage;
+    }
+
+    public interface SliderImgesClick {
+        void clickSliderImages(ImageSliderData imageSliderData);
+        void clickSliderImagesDelete(ImageSliderData imageSliderData);
     }
 }

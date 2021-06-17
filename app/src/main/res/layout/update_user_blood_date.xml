@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     android:background="@drawable/card_shadow">
 
 
@@ -16,20 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Modify User Access !"
+            android:text="Update User Blood Donate Date !"
             android:gravity="center"
             android:background="@drawable/card_shadow"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold" />
-        <ImageButton
-            android:id="@+id/cancel_button"
-            android:layout_width="@dimen/_40dp"
-            android:layout_height="@dimen/_40dp"
-            android:src="@drawable/ic_baseline_cancel_24"
-            android:background="@android:color/transparent"
-            android:tint="@color/red"
-            android:layout_alignParentRight="true"/>
     </RelativeLayout>
 
 
@@ -48,36 +41,45 @@
 
 
         <LinearLayout
+            android:id="@+id/sliderDateTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           android:gravity="center"
             android:orientation="vertical">
-            <RadioGroup
-                android:id="@+id/radioGroup"
-                android:layout_width="wrap_content"
+
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Select Blood Donate  Date"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shadow_button_shape"
                 android:orientation="horizontal">
 
-                <RadioButton
-                    android:id="@+id/adminRadioButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Admin"
-                    android:textStyle="bold"
-                    android:textColor="@color/red_light500"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:checked="true"/>
-                <RadioButton
-                    android:id="@+id/postManagerRadioButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Post Manager"
-                    android:textStyle="bold"
-                    android:textColor="@color/red_light500"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:checked="false"/>
+                <TextView
+                    android:id="@+id/donateDateTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@android:color/transparent"
+                    android:backgroundTint="@color/black"
+                    android:padding="2dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-            </RadioGroup>
+                <ImageButton
+                    android:id="@+id/selectDateIB"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/calendar" />
+            </LinearLayout>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,13 +90,13 @@
             android:padding="5dp">
 
             <Button
-                android:id="@+id/deletebutton"
+                android:id="@+id/cancelButton"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_fp_bg"
-                android:text="Delete User"
+                android:text="Cancel "
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/cardview_light_background" />
@@ -106,7 +108,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_fp_bg"
-                android:text="Update Access"
+                android:text="Update Date"
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/cardview_light_background" />

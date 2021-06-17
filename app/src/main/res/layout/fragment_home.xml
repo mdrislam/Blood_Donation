@@ -1,14 +1,467 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.HomeFragment">
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/pagerLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/view_pager"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/slider_height"
+                            android:clipToPadding="false" />
+
+                        <LinearLayout
+                            android:id="@+id/layout_markers"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/view_pager"
+                            android:gravity="center"
+                            android:orientation="horizontal" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/lytCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:padding="5dp"
+                            android:text="@string/txt_menu"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                            android:textColor="@color/txt_color"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <LinearLayout
+                                    android:id="@+id/lytBook"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <FrameLayout
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp">
+
+                                        <de.hdodenhof.circleimageview.CircleImageView
+
+                                            android:layout_width="60dp"
+                                            android:layout_height="60dp"
+                                            android:src="@drawable/circle_book" />
+
+                                        <TextView
+                                            android:layout_width="18dp"
+                                            android:layout_height="18dp"
+                                            android:layout_gravity="right|end|top"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginEnd="0dp"
+                                            android:layout_marginRight="0dp"
+                                            android:background="@drawable/button_circle__fill_shape"
+                                            android:gravity="center"
+                                            android:padding="2dp"
+                                            android:text="2"
+                                            android:textColor="@android:color/white"
+                                            android:textSize="10sp" />
+                                    </FrameLayout>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:text="Book"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+
+
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <LinearLayout
+                                    android:id="@+id/lytDonation"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <FrameLayout
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp">
+
+                                        <de.hdodenhof.circleimageview.CircleImageView
+
+                                            android:layout_width="60dp"
+                                            android:layout_height="60dp"
+                                            android:src="@drawable/male" />
+
+                                        <TextView
+                                            android:layout_width="18dp"
+                                            android:layout_height="18dp"
+                                            android:layout_gravity="right|end|top"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginEnd="0dp"
+                                            android:layout_marginRight="0dp"
+                                            android:background="@drawable/button_circle__fill_shape"
+                                            android:gravity="center"
+                                            android:padding="2dp"
+                                            android:text="2"
+                                            android:textColor="@android:color/white"
+                                            android:textSize="10sp" />
+                                    </FrameLayout>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:text="Donation"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+
+
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <LinearLayout
+                                    android:id="@+id/lytDonners"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <FrameLayout
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp">
+
+                                        <de.hdodenhof.circleimageview.CircleImageView
+
+                                            android:layout_width="60dp"
+                                            android:layout_height="60dp"
+                                            android:src="@drawable/female_icon" />
+
+                                        <TextView
+                                            android:layout_width="18dp"
+                                            android:layout_height="18dp"
+                                            android:layout_gravity="right|end|top"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginEnd="0dp"
+                                            android:layout_marginRight="0dp"
+                                            android:background="@drawable/button_circle__fill_shape"
+                                            android:gravity="center"
+                                            android:padding="2dp"
+                                            android:text="2"
+                                            android:textColor="@android:color/white"
+                                            android:textSize="10sp" />
+                                    </FrameLayout>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:text="Donners"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <LinearLayout
+                                    android:id="@+id/lytMyList"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <FrameLayout
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp">
+
+                                        <de.hdodenhof.circleimageview.CircleImageView
+
+                                            android:layout_width="60dp"
+                                            android:layout_height="60dp"
+                                            android:src="@drawable/female_icon" />
+
+                                        <TextView
+                                            android:layout_width="18dp"
+                                            android:layout_height="18dp"
+                                            android:layout_gravity="right|end|top"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginEnd="0dp"
+                                            android:layout_marginRight="0dp"
+                                            android:background="@drawable/button_circle__fill_shape"
+                                            android:gravity="center"
+                                            android:padding="2dp"
+                                            android:text="2"
+                                            android:textColor="@android:color/white"
+                                            android:textSize="10sp" />
+                                    </FrameLayout>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/lytDonation"
+                                        android:gravity="center"
+                                        android:text="My List"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+                            </RelativeLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:padding="10dp"
+                            android:text="Requests"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                            android:textColor="@color/txt_color"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="@dimen/_5sdp">
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <LinearLayout
+                                    android:id="@+id/lytUrgentRequest"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <FrameLayout
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp">
+
+                                        <de.hdodenhof.circleimageview.CircleImageView
+
+                                            android:layout_width="60dp"
+                                            android:layout_height="60dp"
+                                            android:src="@drawable/female_icon" />
+
+                                        <TextView
+                                            android:layout_width="18dp"
+                                            android:layout_height="18dp"
+                                            android:layout_gravity="right|end|top"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginEnd="0dp"
+                                            android:layout_marginRight="0dp"
+                                            android:background="@drawable/button_circle__fill_shape"
+                                            android:gravity="center"
+                                            android:padding="2dp"
+                                            android:text="2"
+                                            android:textColor="@android:color/white"
+                                            android:textSize="10sp" />
+                                    </FrameLayout>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/lytDonation"
+                                        android:gravity="center"
+                                        android:text="Urgent Request"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <LinearLayout
+                                    android:id="@+id/lytMyRequest"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <FrameLayout
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp">
+
+                                        <de.hdodenhof.circleimageview.CircleImageView
+
+                                            android:layout_width="60dp"
+                                            android:layout_height="60dp"
+                                            android:src="@drawable/female_icon" />
+
+                                        <TextView
+                                            android:layout_width="18dp"
+                                            android:layout_height="18dp"
+                                            android:layout_gravity="right|end|top"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginEnd="0dp"
+                                            android:layout_marginRight="0dp"
+                                            android:background="@drawable/button_circle__fill_shape"
+                                            android:gravity="center"
+                                            android:padding="2dp"
+                                            android:text="2"
+                                            android:textColor="@android:color/white"
+                                            android:textSize="10sp" />
+                                    </FrameLayout>
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/lytDonation"
+                                        android:gravity="center"
+                                        android:text="My Request"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <LinearLayout
+                                    android:id="@+id/lytPostRequest"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <FrameLayout
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp">
+
+                                        <de.hdodenhof.circleimageview.CircleImageView
+
+                                            android:layout_width="60dp"
+                                            android:layout_height="60dp"
+                                            android:src="@drawable/female_icon" />
+
+                                        <TextView
+                                            android:layout_width="18dp"
+                                            android:layout_height="18dp"
+                                            android:layout_gravity="right|end|top"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginEnd="0dp"
+                                            android:layout_marginRight="0dp"
+                                            android:background="@drawable/button_circle__fill_shape"
+                                            android:gravity="center"
+                                            android:padding="2dp"
+                                            android:text="2"
+                                            android:textColor="@android:color/white"
+                                            android:textSize="10sp" />
+                                    </FrameLayout>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/lytDonation"
+                                        android:gravity="center"
+                                        android:text="Post Request"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <RelativeLayout
+        android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:visibility="gone">
 
-</FrameLayout>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

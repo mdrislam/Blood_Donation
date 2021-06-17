@@ -1,21 +1,15 @@
-package com.mristudio.blooddonation.fragment;
+package com.mristudio.blooddonation.ui.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import com.mristudio.blooddonation.R;
-import com.mristudio.blooddonation.activity.WelcomeActivity;
+import com.mristudio.blooddonation.ui.activity.WelcomeActivity;
 
 public class WelcomeScreenFragmentOne extends Fragment {
     public static Button  buttonStartJourney;

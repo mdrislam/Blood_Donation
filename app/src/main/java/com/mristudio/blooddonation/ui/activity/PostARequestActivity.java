@@ -1,5 +1,6 @@
-package com.mristudio.blooddonation.activity;
+package com.mristudio.blooddonation.ui.activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -107,6 +108,18 @@ public class PostARequestActivity extends AppCompatActivity {
             }
         });
 
+        shedulledTVButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSelectDialog();
+            }
+        });
+
+    }
+
+    private void openSelectDialog() {
+
+        AlertDialog.Builder mBuilder=  new AlertDialog.Builder(getApplicationContext());
     }
 
     /**

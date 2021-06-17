@@ -10,13 +10,12 @@
     android:background="@color/white">
 
     <RelativeLayout
-        android:id="@+id/toolbarOtherLyt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <TextView
-            android:id="@+id/toolbar_Hompage_Other_titleTV"
+            android:id="@+id/adminHomePageTittle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -37,50 +36,6 @@
             android:src="@drawable/ic_arrow_back"
             android:tint="@color/red_light500"
             android:visibility="visible"
-            android:background="@android:color/transparent"/>
-
-
-
-
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/toolbarHomePageLyt"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible">
-
-        <TextView
-            android:id="@+id/toolbar_Hompage_titleTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:text="Admin Panel"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <ImageButton
-            android:id="@+id/adminToolBarExit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/logout"
-            android:tint="@color/red_light500"
-            android:background="@android:color/transparent"/>
-
-        <ImageButton
-            android:id="@+id/adminToolBarNext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:src="@drawable/arrow_next"
-            android:tint="@color/red_light500"
             android:background="@android:color/transparent"/>
 
 

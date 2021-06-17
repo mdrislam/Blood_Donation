@@ -1,6 +1,4 @@
-package com.mristudio.massnundoa.model;
-
-import com.google.firebase.auth.FirebaseUser;
+package com.mristudio.blooddonation.model;
 
 public class AdminDataModel {
     private String userId;
@@ -12,7 +10,7 @@ public class AdminDataModel {
 
     public AdminDataModel() { }
 
-    public AdminDataModel(String userId,String name, String email, String password, String userType, Boolean isAdmin ) {
+    public AdminDataModel(String userId, String name, String email, String password, String userType, Boolean isAdmin ) {
         this.name = name;
         this.email = email;
         this.password = password;
