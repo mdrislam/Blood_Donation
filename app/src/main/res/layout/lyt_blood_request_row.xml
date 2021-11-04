@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
-    app:cardCornerRadius="15dp"
+    app:cardCornerRadius="0dp"
     app:cardUseCompatPadding="true"
     android:background="@drawable/card_shadow"
     card_view:elevation="5dp"
     app:cardElevation="2dp">
 
     <LinearLayout
+        android:id="@+id/ll_StateChangeLesenner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-
         android:padding="@dimen/_10sdp">
 
         <LinearLayout
+            android:id="@+id/lL_Tittle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -39,7 +41,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.2"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -60,7 +62,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/open_sans_bold"
                         android:gravity="center"
-                        android:padding="5dp"
+                        android:padding="7dp"
                         android:text="Contact"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
@@ -68,20 +70,29 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/lL_Chat"
                     android:layout_width="@dimen/margin_0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:background="@drawable/gray_ractangle_shape"
+                    android:gravity="start"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:padding="0dp">
 
-                    <ImageButton
-                        android:id="@+id/Ib_Share"
-                        android:layout_width="@dimen/_24sdp"
-                        android:layout_height="@dimen/_24sdp"
-                        android:background="@android:color/transparent"
-                        android:padding="4dp"
-                        android:src="@drawable/ic_share"
-                        android:tint="@color/red_light500" />
+                    <TextView
+                        android:id="@+id/tvChat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:drawableLeft="@drawable/chat_icon_32"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:text=" Chat"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -124,7 +135,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -133,13 +145,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvRequesterName"
+                    android:id="@+id/tvHospitalName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvDay"
                     android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="Tamanna Akter"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Lakshmipur Sadar Hospital"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -165,7 +177,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
                 android:fontFamily="@font/open_sans"
                 android:gravity="end"
                 android:text="1 minute ago"
@@ -185,7 +197,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/_10sdp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -200,6 +213,7 @@
                     android:layout_below="@+id/tvDay"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="@dimen/_5sdp"
+                    android:maxLines="1"
                     android:drawableLeft="@drawable/listed_location"
                     android:drawableTint="@color/dark_gray"
                     android:fontFamily="@font/open_sans"
@@ -217,7 +231,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvRelationShip"
+                    android:id="@+id/tvRequesterName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -225,7 +239,7 @@
                     android:drawableLeft="@drawable/ic_identity"
                     android:drawableTint="@color/dark_gray"
                     android:fontFamily="@font/open_sans"
-                    android:text="Husband"
+                    android:text="Tamanna Akter"
                     android:gravity="end"
                     android:textColor="@color/dark_gray"
                     android:textStyle="normal" />

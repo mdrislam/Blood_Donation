@@ -7,11 +7,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
-        android:hardwareAccelerated="false"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -19,36 +18,74 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.PostARequestActivity">
-
-
-        </activity>
-        <activity android:name=".ui.activity.ManageDonationActivity" />
+        <activity android:name=".view.activity.DonnerProfileActivity"></activity>
+        <activity android:name=".view.activity.PostDetailsActivity" />
+        <activity android:name=".view.activity.SendMessageActivity" />
+        <activity android:name=".view.activity.MyRequestActivity" />
+        <activity android:name=".view.activity.TopDonnarActivity" />
+        <activity android:name=".view.activity.RecentRequestActivity" />
+        <activity android:name=".view.activity.AutoLocationActivity" />
+        <activity android:name=".view.activity.FindDonnerActivity" />
+        <activity android:name=".view.activity.NavHostActivity" />
+        <activity android:name=".view.activity.PostARequestActivity" />
+        <activity android:name=".view.activity.ManageDonationActivity" />
         <activity
-            android:name=".ui.activity.UserListActivity"
+            android:name=".view.activity.UserListActivity"
             android:label="@string/title_activity_user_list" />
-        <activity android:name=".ui.activity.ManageUserActivity" />
-        <activity android:name=".ui.activity.ManageSliderActivity" />
-        <activity android:name=".ui.activity.AdminActivity"></activity>
+        <activity android:name=".view.activity.ManageUserActivity" />
+        <activity android:name=".view.activity.ManageSliderActivity" />
+        <activity android:name=".view.activity.AdminActivity" />
         <activity
-            android:name=".ui.activity.UserSignUpActivity"
+            android:name=".view.activity.UserSignUpActivity"
             android:theme="@style/MainActivityAppTheme" />
-        <activity android:name=".ui.activity.UserSignInActivity">
-
-        </activity>
-        <activity android:name=".ui.activity.WelcomeActivity">
-
-        </activity>
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".view.activity.UserSignInActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity android:name=".view.activity.WelcomeActivity" />
+        <activity android:name=".view.activity.MainActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <service
+            android:name=".notification.MyFirebaseIdService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+
+
+        </service>
+
+        <service
+            android:name=".notification.MyFirebaseMessaging"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+
+
+        </service>
+
+
     </application>
 
 </manifest>

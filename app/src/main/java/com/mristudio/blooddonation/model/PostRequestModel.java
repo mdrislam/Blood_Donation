@@ -1,7 +1,9 @@
 package com.mristudio.blooddonation.model;
 
 public class PostRequestModel {
+    private String tblId;
     private String uId;
+    private String notifyId;
     private String hName;
     private String sheduledTime;
     private String sheduledDate;
@@ -17,8 +19,10 @@ public class PostRequestModel {
     public PostRequestModel() {
     }
 
-    public PostRequestModel(String uId, String hName, String sheduledTime, String sheduledDate, String bloodGroup, String addressOfHospital, String relationship, String contactNumber, boolean status, String areaOfCity, String areaOfSubCity, boolean isUrgent) {
+    public PostRequestModel(String tblId, String uId, String notifyId,String hName, String sheduledTime, String sheduledDate, String bloodGroup, String addressOfHospital, String relationship, String contactNumber, boolean status, String areaOfCity, String areaOfSubCity, boolean isUrgent) {
+        this.tblId = tblId;
         this.uId = uId;
+        this.notifyId = notifyId;
         this.hName = hName;
         this.sheduledTime = sheduledTime;
         this.sheduledDate = sheduledDate;
@@ -32,12 +36,28 @@ public class PostRequestModel {
         this.isUrgent = isUrgent;
     }
 
+    public String getTblId() {
+        return tblId;
+    }
+
+    public void setTblId(String tblId) {
+        this.tblId = tblId;
+    }
+
     public String getuId() {
         return uId;
     }
 
     public void setuId(String uId) {
         this.uId = uId;
+    }
+
+    public String getNotifyId() {
+        return notifyId;
+    }
+
+    public void setNotifyId(String notifyId) {
+        this.notifyId = notifyId;
     }
 
     public String gethName() {

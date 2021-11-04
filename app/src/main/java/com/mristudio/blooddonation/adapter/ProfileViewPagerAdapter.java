@@ -7,10 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.mristudio.blooddonation.ui.fragment.MyDonationListFragment;
-import com.mristudio.blooddonation.ui.fragment.MyRequestsFragment;
-
-import static com.mristudio.blooddonation.ui.activity.MainActivity.fm;
+import com.mristudio.blooddonation.view.fragment.MyDonationListFragment;
 
 public class ProfileViewPagerAdapter extends FragmentPagerAdapter {
 
@@ -32,7 +29,7 @@ public class ProfileViewPagerAdapter extends FragmentPagerAdapter {
                 MyDonationListFragment myDonationListFragment = new MyDonationListFragment();
                 return myDonationListFragment;
             case 1:
-                MyRequestsFragment myRequestsFragment = new MyRequestsFragment();
+                MyDonationListFragment myRequestsFragment = new MyDonationListFragment();
                 return myRequestsFragment;
 
             default:

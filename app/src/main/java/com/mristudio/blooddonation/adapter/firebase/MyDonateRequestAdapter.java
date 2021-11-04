@@ -53,7 +53,6 @@ public class MyDonateRequestAdapter extends FirebaseRecyclerAdapter<ImageSliderD
 
 
             lL_ContactBackgound = itemView.findViewById(R.id.lL_ContactBackgound);
-            Ib_Share = itemView.findViewById(R.id.Ib_Share);
             tvDonationType = itemView.findViewById(R.id.tvDonationType);
             tvContactButton = itemView.findViewById(R.id.tvContactButton);
             tvSheduledTime = itemView.findViewById(R.id.tvSheduledTime);
@@ -62,7 +61,7 @@ public class MyDonateRequestAdapter extends FirebaseRecyclerAdapter<ImageSliderD
             tvLocationDistance = itemView.findViewById(R.id.tvLocationDistance);
             tvPostRequestTime = itemView.findViewById(R.id.tvPostRequestTime);
             tvLocation = itemView.findViewById(R.id.tvLocation);
-            tvRelationShip = itemView.findViewById(R.id.tvRelationShip);
+          //  tvRelationShip = itemView.findViewById(R.id.tvRelationShip);
             Log.e(TAG, "onBindViewHolder: " );
         }
     }

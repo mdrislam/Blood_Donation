@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/rlCauseSelect"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    android:background="@drawable/bg_cause"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvCauseSelectItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/_2sdp"
+        android:drawableLeft="@drawable/ic_baseline_done"
+        android:text="Thalasimia"
+        android:padding="@dimen/_4sdp"
+        android:textColor="@color/dark_gray"
+        android:drawableTint="@color/green"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textStyle="normal"/>
+
+</RelativeLayout>

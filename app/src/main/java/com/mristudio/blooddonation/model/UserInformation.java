@@ -1,10 +1,12 @@
 package com.mristudio.blooddonation.model;
 
+import java.util.List;
+
 public class UserInformation {
     private String userId;
-    private  Boolean isAdmin;
+    private Boolean isAdmin;
     private String userType;
-    private String userName;
+    private String uname;
     private String email;
     private String password;
     private String name;
@@ -21,6 +23,9 @@ public class UserInformation {
     private String birthday;
     private String last_donateDate;
     private String userProfilePicture;
+    private String token;
+    private String activeStatus;
+    private List<RatingModel> ratingModelList;
 
     public UserInformation() {
     }
@@ -49,12 +54,12 @@ public class UserInformation {
         this.userType = userType;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUname() {
+        return uname;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUname(String uname) {
+        this.uname = uname;
     }
 
     public String getemail() {
@@ -185,4 +190,55 @@ public class UserInformation {
         this.userProfilePicture = userProfilePicture;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public List<RatingModel> getRatingModelList() {
+        return ratingModelList;
+    }
+
+    public void setRatingModelList(List<RatingModel> ratingModelList) {
+        this.ratingModelList = ratingModelList;
+    }
+
+    public String getActiveStatus() {
+        return activeStatus;
+    }
+
+    public void setActiveStatus(String activeStatus) {
+        this.activeStatus = activeStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "UserInformation{" +
+                "userId='" + userId + '\'' +
+                ", isAdmin=" + isAdmin +
+                ", userType='" + userType + '\'' +
+                ", userName='" + uname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", phonNo='" + phonNo + '\'' +
+                ", altPhoneNo='" + altPhoneNo + '\'' +
+                ", socialLink='" + socialLink + '\'' +
+                ", bloodGroup='" + bloodGroup + '\'' +
+                ", weaight=" + weaight +
+                ", userGender='" + userGender + '\'' +
+                ", religion='" + religion + '\'' +
+                ", address='" + address + '\'' +
+                ", police_station='" + police_station + '\'' +
+                ", district='" + district + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", last_donateDate='" + last_donateDate + '\'' +
+                ", userProfilePicture='" + userProfilePicture + '\'' +
+                ", token='" + token + '\'' +
+                ", ratingModelList=" + ratingModelList +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:local="http://schemas.android.com/tools"
     android:id="@+id/toolbar"
@@ -7,26 +8,24 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/white"
-    app:menu="@menu/main_menu">
-
+    android:layout_marginRight="5dp">
     <RelativeLayout
         android:id="@+id/toolbarHomePageLyt"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_5sdp"
-        android:layout_marginRight="@dimen/_5sdp"
         android:visibility="visible">
 
         <TextView
             android:id="@+id/toolbar_Hompage_titleTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Campaign"
+            android:text="Blood Donation"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
             android:textStyle="bold" />
 
@@ -48,27 +47,65 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 android:text="Available at 5 days"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textStyle="bold"
                 android:textColor="@color/black" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:background="@drawable/outer_shadow_button_shape">
+                android:layout_gravity="center">
 
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/toolbar_homapage_availableStatusSwitch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:checked="false"
-                    android:thumb="@drawable/thumb_selector"
-                    app:track="@drawable/custom_thumb" />
+<!--                <androidx.appcompat.widget.SwitchCompat-->
+<!--                    android:id="@+id/toolbar_homapage_availableStatusSwitch"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="1dp"-->
+<!--                    android:checked="false"-->
+<!--                    android:thumb="@drawable/thumb_selector"-->
+<!--                    app:track="@drawable/custom_thumb" />-->
+
+                <com.github.angads25.toggle.widget.LabeledSwitch
+                    android:id="@+id/swButton"
+                    android:layout_width="50dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="0dp"
+                    android:textSize="10sp"
+                    app:on="false"
+                    android:clickable="false"
+                    app:colorBorder="@color/colorPrimaryDark"/>
             </LinearLayout>
 
         </LinearLayout>
 
     </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/toolbar_profile_Lyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:visibility="gone"
+        android:orientation="horizontal">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/toolbar_ProfileImage"
+            android:layout_gravity="center"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/toolbarMenuName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:text=""
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
 </androidx.appcompat.widget.Toolbar>

@@ -22,7 +22,8 @@
     <color name="gray_blue">#5d6079</color>
     <color name="dark_gray">#313030</color>
     <color name="light_gray">#dbdada</color>
-    <color name="light_green">#14c167</color>
+    <color name="light_green">#00AA52</color>
+    <color name="deep_green">#79C59C</color>
     <color name="loading_bg">#1A000000</color>
 
     <color name="cart_highlighted_txt_color">#0470C3</color>

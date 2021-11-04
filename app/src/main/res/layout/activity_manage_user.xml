@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activity.ManageUserActivity">
+    tools:context=".view.activity.ManageUserActivity">
 
     <include layout="@layout/admin_navigation_up_toolbar_layout" />
     <LinearLayout

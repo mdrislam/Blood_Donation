@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.fragment.ContactsFragment">
+
+    <EditText
+        android:id="@+id/searchUserEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:hint="searching"
+        android:ems="10"
+        android:background="@drawable/search_bg"
+        android:padding="@dimen/_20sdp"
+        android:gravity="start|top"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="normal"
+        android:inputType="text" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChatUserList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/lyt_chat_profile" />
+
+
+
+
+</LinearLayout>

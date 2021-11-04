@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    android:background="@drawable/card_shadow"
+    android:padding="@dimen/_10sdp">
+
+    <LinearLayout
+        android:id="@+id/llChatLesenner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/CIVchatProfileImages"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/profile_demo" />
+
+                <ImageView
+                    android:id="@+id/ivChatActiveIndicator"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="right|end|bottom"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginRight="0dp"
+                    android:background="@drawable/chat_active_indicator" />
+            </FrameLayout>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvprofielName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tamanna Akter "
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/dark_gray"
+                android:padding="@dimen/_2sdp"
+                android:gravity="start"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvLastMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="hi"
+                android:textAlignment="viewStart"
+                android:textSize="@dimen/_12sdp"
+                android:padding="@dimen/_2sdp"
+                android:maxLines="1"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

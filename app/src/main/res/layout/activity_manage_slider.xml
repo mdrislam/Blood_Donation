@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activity.ManageSliderActivity">
+    tools:context=".view.activity.ManageSliderActivity">
 
     <include layout="@layout/admin_navigation_up_toolbar_layout" />
 
@@ -21,7 +21,7 @@
 
             <LinearLayout
                 android:id="@+id/addSliderLyt"
-                android:layout_width="389dp"
+                android:layout_width="match_parent"
                 android:layout_height="401dp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"

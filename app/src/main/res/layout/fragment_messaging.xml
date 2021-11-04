@@ -3,17 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.fragment.MessagingFragment">
+    tools:context=".view.fragment.MessagingFragment">
 
-    <TextView
-        android:id="@+id/clickOn"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/red_light500"
+        app:tabSelectedTextColor="@color/red_light500"
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        app:tabTextColor="@color/black" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPagerMessage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+        tools:layout_editor_absoluteX="8dp" />
 
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:text="Message" />
 
 </LinearLayout>
