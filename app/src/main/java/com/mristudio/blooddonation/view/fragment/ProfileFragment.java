@@ -1,6 +1,7 @@
 package com.mristudio.blooddonation.view.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.mristudio.blooddonation.R;
 import com.mristudio.blooddonation.view.activity.MainActivity;
 import com.mristudio.blooddonation.view.activity.UserSignInActivity;
@@ -33,6 +35,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ProfileFragment extends Fragment {
 
@@ -105,6 +109,7 @@ public class ProfileFragment extends Fragment {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
 
+                                unsubscribeTopic();
                                 FirebaseAuth.getInstance().signOut();
                                 Toasty.success(getActivity(), "Sucessfully Signout !", Toasty.LENGTH_SHORT).show();
 
@@ -158,8 +163,21 @@ public class ProfileFragment extends Fragment {
 
     }
 
+    private void unsubscribeTopic() {
+        SharedPreferences editor = getActivity().getSharedPreferences("TOPICS", MODE_PRIVATE);
+        String topic = editor.getString("topic", "none");
+        FirebaseMessaging.getInstance().unsubscribeFromTopic(topic);
+    }
 
-
+    private String concateString(String blood) {
+        if (blood.contains("+")) {
+            return blood.replace("+", "_Plus");
+        } else if (blood.contains("-")) {
+            return blood.replace("-", "_Minus");
+        } else {
+            return "none";
+        }
+    }
     @Override
     public void onResume() {
         super.onResume();
@@ -169,7 +187,7 @@ public class ProfileFragment extends Fragment {
 //        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(false);
-       // MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
+        // MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
     }
 
     @Override

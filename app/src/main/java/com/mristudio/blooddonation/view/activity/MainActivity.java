@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -30,6 +31,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.mristudio.blooddonation.R;
 import com.mristudio.blooddonation.view.fragment.HomeFragment;
 import com.mristudio.blooddonation.view.fragment.MessagingFragment;
@@ -54,20 +56,11 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MAIN ACTIVITY";
     public static Toolbar toolbar;
 
-    BottomNavigationView bottomNavigationView;
-    NavController navController;
-
-    //    public static BottomNavigationView bottomNavigationView;
-    public static Fragment active;
-    public static FragmentManager fm = null;
-
-    public static LinearLayout toolbar_profileLyt;
+   private BottomNavigationView bottomNavigationView;
+   private NavController navController;
     public static RelativeLayout toolbarHomePageLyt;
-
     boolean doubleBackToExitPressedOnce = false;
-
     private List<UserInformation> userInformationList = new ArrayList<>();
-    private DatabaseReference rootRer;
     private DatabaseReference generalUserRef;
 
     @Override
@@ -77,68 +70,20 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        toolbar_profileLyt = toolbar.findViewById(R.id.toolbar_profile_Lyt);
         toolbarHomePageLyt = toolbar.findViewById(R.id.toolbarHomePageLyt);
-
-
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         navController = Navigation.findNavController(this, R.id.hostFragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
-//        /**
-//         * firebase database Ref
-//         * */
-//        rootRer = FirebaseDatabase.getInstance().getReference();
-//        generalUserRef = rootRer.child("generalUserTable");
-//        loadUserDataList();
-//
-//        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-//        fm = getSupportFragmentManager();
-//
-//
-//        fm.beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-
-//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                Fragment selectedFragment = null;
-//                switch (item.getItemId()) {
-//                    case R.id.navigation_home:
-//                        selectedFragment = new HomeFragment();
-//                        break;
-//                    case R.id.navigation_messaging:
-//                        selectedFragment = new MessagingFragment();
-//                        break;
-//                    case R.id.navigation_notification:
-//                        selectedFragment = new NotificationFragment();
-//                        break;
-//                    case R.id.navigation_profile:
-//                        selectedFragment = new ProfileFragment();
-//                        break;
-//
-//                }
-//                fm.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-//                return true;
-//            }
-//        });
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fm.popBackStack();
-            }
-        });
+        loadUserDataList();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         toolbar.setTitle(this.getResources().getString(R.string.app_name));
         toolbar.setTitleTextColor(getApplication().getResources().getColor(R.color.red_light500));
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
         setStatus("online");
     }
 
@@ -147,84 +92,6 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         setStatus("ofline");
     }
-    //    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        this.menu = menu;
-//        getMenuInflater().inflate(R.menu.main_menu, menu);
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//
-//
-//        switch (item.getItemId()) {
-//            case R.id.toolbar_settings:
-//
-//                break;
-//        }
-
-//        //  menu.findItem(R.id.toolbar_search).setVisible(true);
-//
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
-//    @Override
-//    public boolean onPrepareOptionsMenu(Menu menu) {
-//
-////        if (active!=homeFragment){
-////            toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-////            toolbar.setTitle(this.getResources().getString(R.string.app_name));
-////            toolbar.setTitleTextColor(getApplication().getResources().getColor(R.color.red_light500));
-////
-////            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-////            getSupportActionBar().setDisplayShowHomeEnabled(true);
-////        }
-//        invalidateOptionsMenu();
-//        if (fm.getBackStackEntryCount() > 0) {
-//
-//            bottomNavigationView.setVisibility(View.GONE);
-//            toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-//            toolbar.setTitle(this.getResources().getString(R.string.app_name));
-//            toolbar.setTitleTextColor(getApplication().getResources().getColor(R.color.red_light500));
-//
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//            getSupportActionBar().setDisplayShowHomeEnabled(true);
-//            toolbarHomePageLyt.setVisibility(View.GONE);
-//
-//            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    fm.popBackStack();
-//                }
-//            });
-//
-//        } else {
-//
-////            if (fm.getBackStackEntryCount() == 0) {
-////
-////                toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-////                    @Override
-////                    public void onClick(View v) {
-////                        Toast.makeText(activity, ""+fm.getBackStackEntryCount(), Toast.LENGTH_SHORT).show();
-////                        bottomNavigationView.setSelectedItemId(R.id.navigation_home);
-////                        homeClicked = true;
-////                        fm.beginTransaction().hide(active).show(homeFragment).commit();
-////                        active = homeFragment;
-////                        toolbarHomePageLyt.setVisibility(View.VISIBLE);
-////                        bottomNavigationView.setVisibility(View.VISIBLE);
-////                        toolbar.setNavigationIcon(null);
-////                    }
-////                });
-////
-////                //Toast.makeText(activity, "Home Back Space Call", Toast.LENGTH_SHORT).show();
-////            }
-//            bottomNavigationView.setVisibility(View.VISIBLE);
-//            toolbarHomePageLyt.setVisibility(View.VISIBLE);
-//        }
-//        return super.onPrepareOptionsMenu(menu);
-//    }
 
     @Override
     public void onBackPressed() {
@@ -254,18 +121,18 @@ public class MainActivity extends AppCompatActivity {
      * Load SliderImages Data
      */
     private void loadUserDataList() {
+
+        generalUserRef = FirebaseDatabase.getInstance().getReference().child("generalUserTable").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         userInformationList.clear();
 
         generalUserRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    UserInformation userInformation = ds.getValue(UserInformation.class);
-                    userInformationList.add(userInformation);
-                    Log.e(TAG, "Data: " + ds.getValue(ImageSliderData.class).getCreateBy());
-
+                UserInformation userInformation = snapshot.getValue(UserInformation.class);
+                if (userInformation != null) {
+                    subscribeTopic(userInformation.getBloodGroup());
                 }
+                Log.e(TAG, "onDataChange: " + userInformation.getBloodGroup());
 
 
             }
@@ -276,6 +143,23 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void subscribeTopic(String topic) {
+        SharedPreferences.Editor editor = getSharedPreferences("TOPICS", MODE_PRIVATE).edit();
+        editor.putString("topic", concateString(topic));
+        editor.apply();
+        FirebaseMessaging.getInstance().subscribeToTopic(concateString(topic));
+    }
+
+    private String concateString(String blood) {
+        if (blood.contains("+")) {
+            return blood.replace("+", "_Plus");
+        } else if (blood.contains("-")) {
+            return blood.replace("-", "_Minus");
+        } else {
+            return "none";
+        }
     }
 
     private Integer getIndexByuserId(final String email, List<UserInformation> userDataList) {

@@ -1,6 +1,8 @@
 package com.mristudio.blooddonation.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,29 +14,42 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mristudio.blooddonation.R;
 import com.mristudio.blooddonation.model.RequestModel;
 import com.mristudio.blooddonation.utility.UtilsClass;
+import com.mristudio.blooddonation.view.activity.DonnerProfileActivity;
+import com.mristudio.blooddonation.view.activity.PostDetailsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
+
+import static android.content.ContentValues.TAG;
 
 public class HomeDemoAdapter extends RecyclerView.Adapter<HomeDemoAdapter.OnViewHoalder> {
 
 
-    private static final String TAG = "AllUserListAdapter";
+    private static final String TAG = "HomeDemoAdapter";
     private static Context mContext;
-    private HomePostClickLesenner homePostClickLesenner;
+
     List<RequestModel> postRequests = new ArrayList<>();
 
 
-    public HomeDemoAdapter(Context mContext, List<RequestModel> postRequests, HomePostClickLesenner homePostClickLesenner) {
+    public HomeDemoAdapter(Context mContext, List<RequestModel> postRequests) {
         this.mContext = mContext;
-        this.homePostClickLesenner = homePostClickLesenner;
+
         this.postRequests = postRequests;
     }
 
@@ -56,27 +71,9 @@ public class HomeDemoAdapter extends RecyclerView.Adapter<HomeDemoAdapter.OnView
         // holder.tvAddressAndMinutes.settext("");
         holder.tVDetails.setText(postRequests.get(position).getRequestMessage());
         holder.tVBloodName.setText(postRequests.get(position).getBloodGroup());
-        holder.tVReqAccepted.setText("0 Accepted");
-        holder.tVDonated.setText("0 Donated");
+        holder.tVReqAccepted.setText(requestModel.getTotalAccept()+" Accepted");
+        holder.tVDonated.setText(requestModel.getTotalDonate()+" Donated");
 
-        Log.e(TAG, "onBindViewHolder: " + requestModel);
-
-        /**
-         * Cheak Total Loves List is Empty or not
-         * */
-        if (requestModel.getLovesList() != null) {
-            holder.tVLikeCounter.setText(" " + requestModel.getLovesList().size() + " LOVE");
-        } else {
-            holder.tVLikeCounter.setText(" 0 LOVE");
-        }
-        /**
-         * Cheak Total Views List is Empty or not
-         * */
-        if (requestModel.getViewsList() != null) {
-            holder.tvViewsCounter.setText(" " + requestModel.getViewsList().size() + " VIEWS");
-        } else {
-            holder.tvViewsCounter.setText(" 0 VIEWS");
-        }
 
         holder.ll_share.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,55 +108,146 @@ public class HomeDemoAdapter extends RecyclerView.Adapter<HomeDemoAdapter.OnView
                 Toasty.error(mContext, "You are not Registred User !", Toasty.LENGTH_SHORT).show();
             }
         }
-        Log.e(TAG, "onBindViewHolder: " + postRequests.get(position).toString());
+        //Log.e(TAG, "onBindViewHolder: " + postRequests.get(position).toString());
+        holder.ivProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(mContext, DonnerProfileActivity.class);
+                intent.putExtra("uId", postRequests.get(position).getuId());
+                mContext.startActivity(intent);
+
+                ((Activity) mContext).overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
+
+            }
+        });
 
         holder.ivPostImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-                    homePostClickLesenner.homePostClick(postRequests.get(position).getTblId());
-                    holder.tvViewsCounter.setText(UtilsClass.updateTotalViews(postRequests.get(position).getTblId(), FirebaseAuth.getInstance().getCurrentUser().getUid()) + " VIEWS");
-                    notifyDataSetChanged();
+                    Intent intent = new Intent(mContext, PostDetailsActivity.class);
+                    intent.putExtra("userPostId", postRequests.get(position).getTblId());
+                    mContext.startActivity(intent);
+                    ((Activity) mContext).overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
+                    viewed(requestModel.getTblId());
+
                 } else {
                     Toasty.error(mContext, "Your are not Registered User", Toasty.LENGTH_SHORT).show();
                 }
             }
         });
+
 
         holder.llLovesClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (holder.iVLike.getTag().toString().equals("unliked")) {
+                    liked(requestModel.getTblId(), holder.iVLike);
+                } else {
+                    unliken(requestModel.getTblId(), holder.iVLike);
+                }
+            }
+        });
 
-                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+        FirebaseDatabase.getInstance().getReference().child("USER_PUBLIC_POST").child(requestModel.getTblId()).child("LOVES")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    if (requestModel.getLovesList() != null) {
+                        if (dataSnapshot.exists()) {
 
-                        if (requestModel.getLovesList().contains(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-                            holder.iVLike.setImageResource(R.drawable.ic_favorite_border_un);
-                            UtilsClass.removesUserLoves(postRequests.get(position).getTblId(), FirebaseAuth.getInstance().getCurrentUser().getUid());
-                            notifyDataSetChanged();
+                            holder.tVLikeCounter.setText(" " + dataSnapshot.getChildrenCount() + " LOVE");
+                            DataSnapshot dataSnapshot1 = dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                            if(dataSnapshot1.exists()){
+                                holder.iVLike.setImageResource(R.drawable.ic_favorite_cheak);
+                                holder.iVLike.setTag("liked");
+
+                            }else{
+                                holder.iVLike.setImageResource(R.drawable.ic_favorite_border_un);
+                                holder.iVLike.setTag("unliked");
+                                Log.e(TAG, "onDataChange: " + holder.iVLike.getTag().toString());
+                            }
+
+
                         } else {
-                            holder.iVLike.setImageResource(R.drawable.ic_favorite_cheak);
-                            UtilsClass.updateUserLoves(postRequests.get(position).getTblId(), FirebaseAuth.getInstance().getCurrentUser().getUid());
-                            notifyDataSetChanged();
+
+                            holder.tVLikeCounter.setText(" 0 LOVE");
+                            holder.iVLike.setTag("unliked");
                         }
 
-                    } else {
-                        holder.iVLike.setImageResource(R.drawable.ic_favorite_cheak);
-                        UtilsClass.updateUserLoves(postRequests.get(position).getTblId(), FirebaseAuth.getInstance().getCurrentUser().getUid());
-                        notifyDataSetChanged();
+
                     }
-                } else {
-                    Toasty.error(mContext, "Your are not Registered User", Toasty.LENGTH_SHORT).show();
-                }
 
-            }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-        });
+                    }
+                });
+
+        FirebaseDatabase.getInstance().getReference().child("USER_PUBLIC_POST").child(requestModel.getTblId()).child("VIEWS")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        if (dataSnapshot.exists()) {
+
+                            holder.tvViewsCounter.setText(" " + dataSnapshot.getChildrenCount() + " VIEWS");
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
 
     }
 
+    //Liked
+    private void unliken(String tblId, ImageView likeBtn) {
+        String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference postRef = rootRef.child("USER_PUBLIC_POST").child(tblId).child("LOVES");
+        postRef.child(currentUser).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                likeBtn.setImageResource(R.drawable.ic_favorite_border_un);
+                likeBtn.setTag("unliked");
 
+            }
+        });
+
+
+    }
+
+    private void liked(String tblId, ImageView likeBtn) {
+        String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference postRef = rootRef.child("USER_PUBLIC_POST").child(tblId).child("LOVES");
+        HashMap<String, String> map = new HashMap<>();
+        map.put(currentUser, currentUser);
+
+        postRef.child(currentUser).setValue(currentUser).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                likeBtn.setImageResource(R.drawable.ic_favorite_cheak);
+                likeBtn.setTag("liked");
+            }
+        });
+    }
+    public void viewed(String tblId) {
+
+        String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference postRef = rootRef.child("USER_PUBLIC_POST").child(tblId).child("VIEWS");
+        HashMap<String, String> map = new HashMap<>();
+        map.put(currentUser, currentUser);
+        postRef.child(currentUser).setValue(currentUser);
+
+    }
     @Override
     public int getItemCount() {
         return postRequests.size();
@@ -195,8 +283,5 @@ public class HomeDemoAdapter extends RecyclerView.Adapter<HomeDemoAdapter.OnView
 
     }
 
-    public interface HomePostClickLesenner {
-        void homePostClick(String tblName);
-    }
 
 }

@@ -53,12 +53,12 @@ public class TopDonnarActivity extends AppCompatActivity {
                 Intent intent = new Intent(TopDonnarActivity.this, DonnerProfileActivity.class);
                 intent.putExtra("uId", userId);
                 startActivity(intent);
-                overridePendingTransition(R.anim.left_in, R.anim.left_out);
-               // getActivity().overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
+                // overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
+                // getActivity().overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
 
             }
         });
-
 
 
         FirebaseDatabase.getInstance().getReference().child("generalUserTable").addValueEventListener(new ValueEventListener() {

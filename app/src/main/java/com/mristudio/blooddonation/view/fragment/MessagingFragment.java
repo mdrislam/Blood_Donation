@@ -124,13 +124,8 @@ public class MessagingFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        MainActivity.toolbar_profileLyt.setVisibility(View.GONE);
-        MainActivity.toolbarHomePageLyt.setVisibility(View.VISIBLE);
         TextView tittleTv = MainActivity.toolbar.findViewById(R.id.toolbar_Hompage_titleTV);
         tittleTv.setText("LPI BLOOD BANK");
-
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        // MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
        tabNotify();
 
     }
@@ -138,11 +133,7 @@ public class MessagingFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        MainActivity.toolbar_profileLyt.setVisibility(View.GONE);
-        MainActivity.toolbarHomePageLyt.setVisibility(View.VISIBLE);
-
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        //  MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
+     
        tabNotify();
     }
 }

@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -80,7 +81,7 @@ public class SendMessageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         profileImage = (CircleImageView) toolbar.findViewById(R.id.toolbar_ProfileImage);
-        profileNameTv = (TextView) toolbar.findViewById(R.id.toolbarMenuName);
+        profileNameTv = (TextView) toolbar.findViewById(R.id.toolbarName);
         profileImage = findViewById(R.id.toolbar_ProfileImage);
         profileNameTv = findViewById(R.id.toolbarName);
         recyclerView = findViewById(R.id.rechycler_view);
@@ -89,7 +90,7 @@ public class SendMessageActivity extends AppCompatActivity {
 
 
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
-        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
         receiverId = getIntent().getStringExtra("userChatId");
         loadUserData(receiverId);
 
@@ -194,13 +195,14 @@ public class SendMessageActivity extends AppCompatActivity {
 
     }
 
-    private void setCurrentUser(String userid){
-        SharedPreferences.Editor editor = getSharedPreferences("PREFS",MODE_PRIVATE).edit();
-        editor.putString("currentuser",userid);
+    private void setCurrentUser(String userid) {
+        SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
+        editor.putString("currentuser", userid);
         editor.apply();
 
 
     }
+
     //Send Notify Specypic User
     private void senNotification(String receiver, String name, String msg) {
         DatabaseReference tokens = FirebaseDatabase.getInstance().getReference("Tokens");
@@ -210,8 +212,12 @@ public class SendMessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Token token = snapshot.getValue(Token.class);
-                    Data data = new Data(currentUser.getUid(), R.mipmap.ic_launcher, name + ":" + msg, "New Message",
+
+
+                    Data data = new Data(currentUser.getUid(), R.drawable.ic_launcher_background, "New Message", name, "message", msg,
                             getIntent().getStringExtra("userChatId"));
+
+                    Log.e(TAG, " ReceiverId: " + getIntent().getStringExtra("userChatId"));
 
                     Sender sender = new Sender(data, token.getToken());
 
@@ -221,14 +227,14 @@ public class SendMessageActivity extends AppCompatActivity {
                             if (response.code() == 200) {
                                 if (response.body().success != 1) {
                                     Toasty.error(SendMessageActivity.this, "Faild", Toasty.LENGTH_SHORT).show();
-                                    Log.e(TAG, "onResponse: "+response.message() );
+                                    Log.e(TAG, "onResponse: " + response.message());
                                 }
                             }
                         }
 
                         @Override
                         public void onFailure(Call<MyResponse> call, Throwable t) {
-                            Log.e(TAG, "onFailure: "+t.getMessage() );
+                            Log.e(TAG, "onFailure: " + t.getMessage());
                         }
                     });
                 }
@@ -341,7 +347,7 @@ public class SendMessageActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setStatus("ofline");
-       // setCurrentUser(getIntent().getStringExtra("userChatId"));
+        // setCurrentUser(getIntent().getStringExtra("userChatId"));
         setCurrentUser("none");
         reference.removeEventListener(seenLesenner);
     }
@@ -349,15 +355,27 @@ public class SendMessageActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.no_animation, R.anim.slide_down);
-        finish();
+        if (getIntent().getExtras().getBoolean("status")) {
+
+            startActivity(new Intent(SendMessageActivity.this, MainActivity.class));
+
+        } else {
+
+            overridePendingTransition(R.anim.no_animation, R.anim.slide_down);
+            finish();
+        }
+
     }
 
     @Override
     public boolean onSupportNavigateUp() {
+        if (getIntent().getExtras().getBoolean("status")) {
+            startActivity(new Intent(SendMessageActivity.this, MainActivity.class));
+        } else {
+            onBackPressed();
+            finish();
+        }
 
-        onBackPressed();
-        finish();
         return true;
     }
 }

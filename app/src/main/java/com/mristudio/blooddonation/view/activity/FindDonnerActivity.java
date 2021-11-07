@@ -33,6 +33,7 @@ import android.widget.TimePicker;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,8 +48,11 @@ import com.mristudio.blooddonation.adapter.BloodGroup_SelectedAdapter;
 import com.mristudio.blooddonation.adapter.Caouse_SelectedAdapter;
 import com.mristudio.blooddonation.model.RequestModel;
 import com.mristudio.blooddonation.model.UserInformation;
-import com.mristudio.blooddonation.view.fragment.LocationFragment;
-import com.squareup.picasso.Picasso;
+import com.mristudio.blooddonation.notification.APIService;
+import com.mristudio.blooddonation.notification.Client;
+import com.mristudio.blooddonation.notification.Data;
+import com.mristudio.blooddonation.notification.MyResponse;
+import com.mristudio.blooddonation.notification.Sender;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -56,6 +60,9 @@ import java.util.Calendar;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.content.ContentValues.TAG;
 
@@ -88,6 +95,8 @@ public class FindDonnerActivity extends AppCompatActivity {
 
     private static StorageReference mstorageReference;
     private static StorageTask storageTask;
+    private APIService apiService;
+    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +119,6 @@ public class FindDonnerActivity extends AppCompatActivity {
 
         bloodGroupRV = findViewById(R.id.bloodGroupRV);
         rvCaseList = findViewById(R.id.rvCaseList);
-
         eTaddressOfHospital = findViewById(R.id.eTaddressOfHospital);
         etRequestMessage = findViewById(R.id.etRequestMessage);
         tvAddImage = findViewById(R.id.tvAddImage);
@@ -122,6 +130,10 @@ public class FindDonnerActivity extends AppCompatActivity {
         ibPluse = findViewById(R.id.ibPluse);
         cbIsurgent = findViewById(R.id.cbIsurgent);
         btnPublish = findViewById(R.id.btnPublish);
+
+        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
         tvMale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,7 +179,6 @@ public class FindDonnerActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(FindDonnerActivity.this, AutoLocationActivity.class);
                 startActivity(intent);
-                // getActivity().overridePendingTransition( R.anim.left_in, R.anim.left_out);
                 Log.e(TAG, "onClick: ");
                 overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
             }
@@ -222,7 +233,7 @@ public class FindDonnerActivity extends AppCompatActivity {
                     String notifID = notifRef.push().getKey();
 
                     RequestModel requestModel = new RequestModel(
-                            notifID, userID,
+                            notifID, currentUser.getUid(),
                             notifID, bloodGroup,
                             addressofHopital,
                             addressOfHospitalString,
@@ -257,7 +268,16 @@ public class FindDonnerActivity extends AppCompatActivity {
                                             postRef.child(postID).setValue(requestModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
+
+                                                    String tittle = "Need " + bloodGroup + " Blood for" + couseOfBlood + " Patient";
+                                                    //    Data(String tittle, String type, String imageurl, String description, String address, String postId)
+                                                    /**
+                                                     * Send Notification
+                                                     * */
+                                                    senNotification(bloodGroup, tittle, uri.toString(), requestMessage, "" + addressOfHospitalString, postID);
+
                                                     progress.dismiss();
+
                                                     Toasty.success(FindDonnerActivity.this, "Saved", Toasty.LENGTH_SHORT).show();
 
                                                     startActivity(new Intent(FindDonnerActivity.this, MainActivity.class));
@@ -301,13 +321,14 @@ public class FindDonnerActivity extends AppCompatActivity {
             }
         });
     }
+
     private void loadUserData(String receiverId) {
         Log.e(TAG, "chatProfile: " + receiverId);
         FirebaseDatabase.getInstance().getReference().child("generalUserTable").child(receiverId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-               UserInformation userInformation = snapshot.getValue(UserInformation.class);
-                if(userInformation!=null){
+                UserInformation userInformation = snapshot.getValue(UserInformation.class);
+                if (userInformation != null) {
                     userProfileName = userInformation.getName();
                     userProfileImg = userInformation.getUserProfilePicture();
                 }
@@ -321,6 +342,7 @@ public class FindDonnerActivity extends AppCompatActivity {
         });
         // Toast.makeText(RecentRequestActivity.this, ""+tblId, Toast.LENGTH_SHORT).show();
     }
+
     /**
      * Cheak Users Inputs Validations
      */
@@ -357,6 +379,15 @@ public class FindDonnerActivity extends AppCompatActivity {
 
     }
 
+    private String concateString(String blood) {
+        if (blood.contains("+")) {
+            return blood.replace("+", "_Plus");
+        } else if (blood.contains("-")) {
+            return blood.replace("-", "_Minus");
+        } else {
+            return "none";
+        }
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -455,6 +486,33 @@ public class FindDonnerActivity extends AppCompatActivity {
 
     }
 
+    //Send Notify Specypic User
+    private void senNotification(String topic, String tittle, String imageurl, String description, String address, String postId) {
+
+        //Data(String tittle, String type, String imageurl, String description, String address, String postId) {
+        Data data = new Data(tittle, "topic", imageurl, description, address, postId);
+
+        Sender sender = new Sender(data, "/topics/" + concateString(topic));
+
+        apiService.sendNotification(sender).enqueue(new Callback<MyResponse>() {
+            @Override
+            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                if (response.code() == 200) {
+                    if (response.body().success != 1) {
+                        Toasty.error(FindDonnerActivity.this, "Faild", Toasty.LENGTH_SHORT).show();
+                        Log.e(TAG, "onResponse: " + response.message());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MyResponse> call, Throwable t) {
+                Log.e(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+
+
+    }
 
     //get Making Image Url
     private String getFileExtension(Uri uri) {

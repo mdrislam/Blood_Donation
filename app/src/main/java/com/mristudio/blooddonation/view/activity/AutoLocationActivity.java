@@ -24,9 +24,6 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 import static android.content.ContentValues.TAG;
-import static com.mristudio.blooddonation.view.fragment.FindDonnerFragment.addressArray;
-import static com.mristudio.blooddonation.view.fragment.FindDonnerFragment.addressofHopital;
-import static com.mristudio.blooddonation.view.fragment.FindDonnerFragment.eTaddressOfHospital;
 
 public class AutoLocationActivity extends AppCompatActivity implements OnMapReadyCallback {
 

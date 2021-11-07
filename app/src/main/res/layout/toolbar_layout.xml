@@ -55,14 +55,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
 
-<!--                <androidx.appcompat.widget.SwitchCompat-->
-<!--                    android:id="@+id/toolbar_homapage_availableStatusSwitch"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_margin="1dp"-->
-<!--                    android:checked="false"-->
-<!--                    android:thumb="@drawable/thumb_selector"-->
-<!--                    app:track="@drawable/custom_thumb" />-->
 
                 <com.github.angads25.toggle.widget.LabeledSwitch
                     android:id="@+id/swButton"
@@ -80,32 +72,4 @@
         </LinearLayout>
 
     </RelativeLayout>
-    <LinearLayout
-        android:id="@+id/toolbar_profile_Lyt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:visibility="gone"
-        android:orientation="horizontal">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/toolbar_ProfileImage"
-            android:layout_gravity="center"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_launcher_background" />
-
-        <TextView
-            android:id="@+id/toolbarMenuName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:text=""
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-
-    </LinearLayout>
 </androidx.appcompat.widget.Toolbar>

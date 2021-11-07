@@ -33,27 +33,57 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
+        NotificationHelper helper = new NotificationHelper(this);
 
-        String sented = remoteMessage.getData().get("sented");
-        String user = remoteMessage.getData().get("user");
+        String type = remoteMessage.getData().get("type");
+        String sender = remoteMessage.getData().get("sender");
+        String receiver = remoteMessage.getData().get("receiver");
+        String tittle = remoteMessage.getData().get("tittle");
+        String sendername = remoteMessage.getData().get("sendername");
+        String msg = remoteMessage.getData().get("msg");
+        String imageurl = remoteMessage.getData().get("imageurl");
+        String description = remoteMessage.getData().get("description");
+        String address = remoteMessage.getData().get("address");
+        String postId = remoteMessage.getData().get("postId");
 
         SharedPreferences sharedPreferences = getSharedPreferences("PREFS", MODE_PRIVATE);
         String myUser = sharedPreferences.getString("currentuser", "none");
 
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            if (type.equals("topic")) {
+                helper.tiggerNotification(tittle, address, imageurl, description, postId);
 
+            } else {
 
-        if (currentUser != null && sented.equals(currentUser.getUid())) {
-            if (!myUser.equals(user)) {
-                sendNotification(remoteMessage);
+                if (receiver.equals(currentUser.getUid())) {
+
+                    if (!myUser.equals(sender)) {
+                        helper.tiggerNotificationForMessage(tittle, sendername, msg, sender);
+                        // sendNotificationMessage(remoteMessage);
+                    }
+                }
             }
         }
+
+
+//        if (currentUser != null && receiver.equals(currentUser.getUid())) {
+//            if (!myUser.equals(sender)) {
+//                sendNotificationMessage(remoteMessage);
+//            }
+//        }
+
+
         //Toast.makeText(this, ""+sented, Toast.LENGTH_SHORT).show();
-        Log.e(TAG, "onMessageReceived: " + sented);
+        Log.e(TAG, "onMessageReceived: " + receiver);
+        Log.e(TAG, "tittle: " + tittle);
+
+
     }
 
-    private void sendNotification(RemoteMessage remoteMessage) {
+    private void sendNotificationMessage(RemoteMessage remoteMessage) {
+
 
         String user = remoteMessage.getData().get("user");
         String icon = remoteMessage.getData().get("icon");

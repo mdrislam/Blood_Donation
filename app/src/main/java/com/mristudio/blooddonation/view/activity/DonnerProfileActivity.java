@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -49,8 +50,9 @@ public class DonnerProfileActivity extends AppCompatActivity {
         initView();
 
         if (getIntent().getExtras() != null) {
+            Log.e(TAG, "onCreate: "+getIntent().getExtras().getString("uId") );
 
-            loadDetailsData(getIntent().getExtras().getString("uId"));
+           loadDetailsData(getIntent().getExtras().getString("uId"));
         }
     }
 
@@ -62,6 +64,7 @@ public class DonnerProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 userInformation = snapshot.getValue(UserInformation.class);
+                if(userInformation!=null)
                 Picasso.get().load(userInformation.getUserProfilePicture()).into(ivProfile_image);
 
                 DataSnapshot donatesSnapshot = snapshot.child("DONATES");
@@ -209,7 +212,7 @@ public class DonnerProfileActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.no_animation, R.anim.slide_down);
-        overridePendingTransition(R.anim.right_in, R.anim.right_out);
+        //overridePendingTransition(R.anim.right_in, R.anim.right_out);
         finish();
     }
 

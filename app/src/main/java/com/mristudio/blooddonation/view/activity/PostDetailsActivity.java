@@ -19,6 +19,8 @@ import com.mristudio.blooddonation.R;
 import com.mristudio.blooddonation.model.RequestModel;
 import com.squareup.picasso.Picasso;
 
+import es.dmoral.toasty.Toasty;
+
 public class PostDetailsActivity extends AppCompatActivity {
 
     private static final String TAG = "PostDetailsActivity";
@@ -26,6 +28,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     private TextView tvbloodName, tvGender, tvUnits, tvTotalAccept, tvDonateDateTime, tvCause, tvDonateLocation;
     private TextView tVProfileName, tVLokingFor, tvDonateDatetimeAndPostTime, tVDetails, tvAcceptclk, tvDeclineClk, tvShareClk;
     private ImageView ivProfileImage, ivPostImage;
+    private RequestModel model;
 
 
     @Override
@@ -81,6 +84,20 @@ public class PostDetailsActivity extends AppCompatActivity {
 
             }
         });
+        ivPostImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (model != null) {
+
+                    Intent intent = new Intent(PostDetailsActivity.this, ImageActivity.class);
+                    intent.putExtra("imageurl", model.getImagesUrl());
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
+                } else {
+                    Toasty.error(PostDetailsActivity.this, "Unable to Open Image", Toasty.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 
@@ -92,7 +109,7 @@ public class PostDetailsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    RequestModel model = snapshot.getValue(RequestModel.class);
+                    model = snapshot.getValue(RequestModel.class);
                     DataSnapshot totalAccept = snapshot.child("ACCEPT");
 
                     if (model != null) {
@@ -165,15 +182,25 @@ public class PostDetailsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.no_animation, R.anim.slide_down);
-        finish();
+        if (getIntent().getExtras().getBoolean("status")) {
+            startActivity(new Intent(PostDetailsActivity.this, MainActivity.class));
+
+        } else {
+            overridePendingTransition(R.anim.no_animation, R.anim.slide_down);
+            finish();
+        }
     }
 
     @Override
     public boolean onSupportNavigateUp() {
 
-        onBackPressed();
-        finish();
+        if (getIntent().getExtras().getBoolean("status")) {
+            startActivity(new Intent(PostDetailsActivity.this, MainActivity.class));
+
+        } else {
+            onBackPressed();
+            finish();
+        }
         return true;
     }
 }

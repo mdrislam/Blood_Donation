@@ -31,6 +31,7 @@ import com.mristudio.blooddonation.adapter.firebase.FindRequestAdapter;
 import com.mristudio.blooddonation.model.ImageSliderData;
 import com.mristudio.blooddonation.model.RequestModel;
 import com.mristudio.blooddonation.model.UserInformation;
+import com.mristudio.blooddonation.view.activity.DonnerProfileActivity;
 import com.mristudio.blooddonation.view.activity.PostDetailsActivity;
 import com.mristudio.blooddonation.view.activity.FindDonnerActivity;
 import com.mristudio.blooddonation.view.activity.MainActivity;
@@ -137,18 +138,7 @@ public class HomeFragment extends Fragment {
         rlMyRequest = view.findViewById(R.id.rlMyRequest);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        HomeDemoAdapter adapter = new HomeDemoAdapter(getActivity(), postRequests, new HomeDemoAdapter.HomePostClickLesenner() {
-            @Override
-            public void homePostClick(String tblName) {
-
-                Intent intent = new Intent(getActivity(), PostDetailsActivity.class);
-                intent.putExtra("userPostId", tblName);
-                getActivity().startActivity(intent);
-                // getActivity().overridePendingTransition( R.anim.left_in, R.anim.left_out);
-                getActivity().overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
-
-            }
-        });
+        HomeDemoAdapter adapter = new HomeDemoAdapter(getActivity(), postRequests);
 
         rVRequestPost.setLayoutManager(llm);
         rVRequestPost.setAdapter(adapter);
@@ -160,34 +150,19 @@ public class HomeFragment extends Fragment {
                     postRequests.clear();
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         RequestModel model = dataSnapshot.getValue(RequestModel.class);
-
-                        DataSnapshot lovesSnapshot = dataSnapshot.child("LOVES");
-                        DataSnapshot viewsSnapshot = dataSnapshot.child("VIEWS");
-
-                        if (lovesSnapshot.exists()) {
-
-                            List<String> loveslist = new ArrayList<>();
-                            for (DataSnapshot love : lovesSnapshot.getChildren()) {
-
-                                loveslist.add(love.getValue(String.class));
-                            }
-                            model.setLovesList(loveslist);
-                        } else {
-
-
+                        DataSnapshot accepted = dataSnapshot.child("ACCEPT");
+                        DataSnapshot donated = dataSnapshot.child("DONATE");
+                        if (accepted.exists()) {
+                            model.setTotalAccept((int) accepted.getChildrenCount());
+                        }else {
+                            model.setTotalAccept(0);
                         }
-                        if (viewsSnapshot.exists()) {
-
-                            List<String> viewsList = new ArrayList<>();
-                            for (DataSnapshot love : lovesSnapshot.getChildren()) {
-
-                                viewsList.add(love.getValue(String.class));
-                            }
-                            model.setViewsList(viewsList);
-                        } else {
-                            Log.e(TAG, "onDataChange: Views not found ! ");
-
+                        if (donated.exists()) {
+                            model.setTotalAccept((int) donated.getChildrenCount());
+                        }else {
+                            model.setTotalDonate(0);
                         }
+
                         postRequests.add(model);
                     }
                     adapter.notifyDataSetChanged();
@@ -251,6 +226,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
+
     /**
      * init home Slider method 1
      */
@@ -307,30 +283,18 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        MainActivity.toolbar_profileLyt.setVisibility(View.GONE);
         MainActivity.toolbarHomePageLyt.setVisibility(View.VISIBLE);
-
         TextView tittleTv = MainActivity.toolbar.findViewById(R.id.toolbar_Hompage_titleTV);
         tittleTv.setText("LPI BLOOD BANK");
-//        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(false);
-        // MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
-        MainActivity.toolbar_profileLyt.setVisibility(View.GONE);
-        MainActivity.toolbarHomePageLyt.setVisibility(View.VISIBLE);
-
         TextView tittleTv = MainActivity.toolbar.findViewById(R.id.toolbar_Hompage_titleTV);
         tittleTv.setText("LPI BLOOD BANK");
-//        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(false);
-        //  MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
+
     }
 
 
