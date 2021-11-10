@@ -1,10 +1,8 @@
 package com.mristudio.blooddonation.adapter.firebase;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,16 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.mristudio.blooddonation.R;
-import com.mristudio.blooddonation.adapter.HomeDemoAdapter;
-import com.mristudio.blooddonation.model.PostRequestModel;
 import com.mristudio.blooddonation.model.RequestModel;
 import com.mristudio.blooddonation.utility.UtilsClass;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class FindRequestAdapter extends FirebaseRecyclerAdapter<RequestModel, FindRequestAdapter.MyDonateRequestViewHolder> {
 

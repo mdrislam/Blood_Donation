@@ -1,8 +1,9 @@
 package com.mristudio.blooddonation.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RequestModel {
+public class RequestModel implements Serializable {
     private String tblId;
     private String uId;
     private String notifyId;
@@ -23,14 +24,31 @@ public class RequestModel {
     private String userProfileName;
     private String userProfileImageUrl;
     private String postDateTime;
-    private List<String> lovesList;
-    private List<String> viewsList;
+
+    private String type;
+
+
+
 
 
     public RequestModel() {
     }
 
-    public RequestModel(String tblId, String uId, String notifyId, String bloodGroup, String hospitalName,String addressofHospital, String requestMessage, String district, String imagesUrl, String cause, String gender, String date, String time, Integer units, boolean isUrgent, Integer totalAccept, Integer totalDonate, String userProfileName, String userProfileImageUrl,String postDateTime) {
+    public RequestModel(String tblId, String uId, String requestMessage, String imagesUrl, String gender, String date, String time, String userProfileName, String userProfileImageUrl, String postDateTime, String type) {
+        this.tblId = tblId;
+        this.uId = uId;
+        this.requestMessage = requestMessage;
+        this.imagesUrl = imagesUrl;
+        this.gender = gender;
+        this.date = date;
+        this.time = time;
+        this.userProfileName = userProfileName;
+        this.userProfileImageUrl = userProfileImageUrl;
+        this.postDateTime = postDateTime;
+        this.type = type;
+    }
+
+    public RequestModel(String tblId, String uId, String notifyId, String bloodGroup, String hospitalName, String addressofHospital, String requestMessage, String district, String imagesUrl, String cause, String gender, String date, String time, Integer units, boolean isUrgent, String userProfileName, String userProfileImageUrl, String postDateTime, String type) {
         this.tblId = tblId;
         this.uId = uId;
         this.notifyId = notifyId;
@@ -46,11 +64,11 @@ public class RequestModel {
         this.time = time;
         this.units = units;
         this.isUrgent = isUrgent;
-        this.totalAccept = totalAccept;
-        this.totalDonate = totalDonate;
+
         this.userProfileName = userProfileName;
         this.userProfileImageUrl = userProfileImageUrl;
         this.postDateTime = postDateTime;
+        this.type = type;
     }
 
     public String getTblId() {
@@ -213,6 +231,14 @@ public class RequestModel {
         this.postDateTime = postDateTime;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "RequestModel{" +
@@ -220,6 +246,7 @@ public class RequestModel {
                 ", uId='" + uId + '\'' +
                 ", notifyId='" + notifyId + '\'' +
                 ", bloodGroup='" + bloodGroup + '\'' +
+                ", hospitalName='" + hospitalName + '\'' +
                 ", addressofHospital='" + addressofHospital + '\'' +
                 ", requestMessage='" + requestMessage + '\'' +
                 ", district='" + district + '\'' +
@@ -234,24 +261,7 @@ public class RequestModel {
                 ", totalDonate=" + totalDonate +
                 ", userProfileName='" + userProfileName + '\'' +
                 ", userProfileImageUrl='" + userProfileImageUrl + '\'' +
-                ", lovesList=" + lovesList +
-                ", viewsList=" + viewsList +
+                ", postDateTime='" + postDateTime + '\'' +
                 '}';
-    }
-
-    public List<String> getLovesList() {
-        return lovesList;
-    }
-
-    public void setLovesList(List<String> lovesList) {
-        this.lovesList = lovesList;
-    }
-
-    public List<String> getViewsList() {
-        return viewsList;
-    }
-
-    public void setViewsList(List<String> viewsList) {
-        this.viewsList = viewsList;
     }
 }

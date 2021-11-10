@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,14 +24,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mristudio.blooddonation.R;
-import com.mristudio.blooddonation.adapter.HomeDemoAdapter;
+import com.mristudio.blooddonation.adapter.HomeAdapter;
+import com.mristudio.blooddonation.adapter.HomeDemAdapter;
 import com.mristudio.blooddonation.adapter.Slider_Pager_Adapter;
 import com.mristudio.blooddonation.adapter.firebase.FindRequestAdapter;
 import com.mristudio.blooddonation.model.ImageSliderData;
 import com.mristudio.blooddonation.model.RequestModel;
 import com.mristudio.blooddonation.model.UserInformation;
-import com.mristudio.blooddonation.view.activity.DonnerProfileActivity;
-import com.mristudio.blooddonation.view.activity.PostDetailsActivity;
 import com.mristudio.blooddonation.view.activity.FindDonnerActivity;
 import com.mristudio.blooddonation.view.activity.MainActivity;
 import com.mristudio.blooddonation.view.activity.MyRequestActivity;
@@ -41,6 +39,7 @@ import com.mristudio.blooddonation.view.activity.TopDonnarActivity;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -138,7 +137,7 @@ public class HomeFragment extends Fragment {
         rlMyRequest = view.findViewById(R.id.rlMyRequest);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        HomeDemoAdapter adapter = new HomeDemoAdapter(getActivity(), postRequests);
+        HomeDemAdapter adapter = new HomeDemAdapter(getActivity(), postRequests);
 
         rVRequestPost.setLayoutManager(llm);
         rVRequestPost.setAdapter(adapter);
@@ -165,6 +164,7 @@ public class HomeFragment extends Fragment {
 
                         postRequests.add(model);
                     }
+                    Collections.reverse(postRequests);
                     adapter.notifyDataSetChanged();
                 }
             }

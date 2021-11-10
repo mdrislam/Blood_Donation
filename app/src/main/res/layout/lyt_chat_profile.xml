@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="2dp"
-    android:background="@drawable/card_shadow"
-    android:padding="@dimen/_10sdp">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/llChatLesenner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="@dimen/margin_15dp"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -66,12 +66,19 @@
                 android:gravity="start"
                 android:text="hi"
                 android:textAlignment="viewStart"
-                android:textSize="@dimen/_12sdp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:padding="@dimen/_2sdp"
                 android:maxLines="1"
+                android:textColor="@color/overlay_white"
                 android:textStyle="normal" />
 
         </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/dark_gray"
+        />
 
 </LinearLayout>

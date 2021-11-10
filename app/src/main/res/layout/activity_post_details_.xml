@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.activity.PostDetails_Activity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        >
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/dimen_60dp"
+            android:fillViewport="true"
+            android:fitsSystemWindows="true">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/layoutClick"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="start"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/ivProfileImage"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:padding="0dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/male" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:gravity="start"
+                            android:orientation="vertical"
+                            android:padding="0dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:orientation="horizontal"
+                                android:padding="0dp">
+
+                                <TextView
+                                    android:id="@+id/tVProfileName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"
+                                    android:text="Tamanna Akter "
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold" />
+
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tvAddressAndMinutes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:maxLines="1"
+                                android:text="4 minutes ago"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/dark_gray"
+                                android:textSize="@dimen/_13sdp"
+                                android:textStyle="normal" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_5sdp">
+
+                        <TextView
+                            android:id="@+id/tVDetails"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="Looking for Emergency Blood for my pragnent wife"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:textStyle="normal" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp">
+
+                        <ImageView
+                            android:id="@+id/ivPostImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/profile_demo" />
+
+                        <LinearLayout
+                            android:id="@+id/transfarentLyt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/tVBloodName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:background="@drawable/btn_red_shape"
+                                android:gravity="center"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:paddingRight="@dimen/_10sdp"
+                                android:text="O+"
+                                android:textAlignment="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+
+                                android:textColor="@color/white"
+                                android:textStyle="normal" />
+
+                            <TextView
+                                android:id="@+id/tVReqAccepted"
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:background="@drawable/btn_shape_transferant"
+                                android:drawableLeft="@drawable/ic_identity"
+                                android:drawableTint="@color/white"
+                                android:gravity="center"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:paddingRight="@dimen/_10sdp"
+                                android:text="0 Accepted"
+                                android:textAlignment="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                android:textColor="@color/white"
+                                android:textStyle="normal" />
+
+                            <TextView
+                                android:id="@+id/tVDonated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:background="@drawable/btn_shape_transferant"
+                                android:drawableLeft="@drawable/ic_baseline_done"
+                                android:drawableTint="@color/white"
+                                android:gravity="center"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:paddingRight="@dimen/_10sdp"
+                                android:text=" 0 Donated"
+                                android:textAlignment="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                android:textColor="@color/white"
+                                android:textStyle="normal" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/llPostBottom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/_5sdp">
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:background="@drawable/bg_chat_screen"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/_5sdp">
+
+                                <LinearLayout
+                                    android:id="@+id/llPostLike"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:layout_centerInParent="true"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:id="@+id/postlikeIv"
+                                        android:layout_width="@dimen/_24sdp"
+                                        android:layout_height="@dimen/_24sdp"
+                                        android:background="@android:color/transparent"
+                                        android:padding="2dp"
+                                        android:src="@drawable/heart"
+                                        app:tint="@color/gray_blue" />
+
+                                    <TextView
+                                        android:id="@+id/postlikeCounterTV"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:text=" 10"
+                                        android:textAlignment="center"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                        android:textColor="@color/dark_gray"
+                                        android:textStyle="normal" />
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:background="@drawable/bg_chat_screen"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/_5sdp">
+
+                                <LinearLayout
+                                    android:id="@+id/llComment"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/_24sdp"
+                                        android:layout_height="@dimen/_24sdp"
+                                        android:padding="@dimen/_2sdp"
+                                        android:src="@drawable/comment"
+                                        app:tint="@color/gray_blue" />
+
+                                    <TextView
+                                        android:id="@+id/commentCounterTV"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="3dp"
+                                        android:gravity="center"
+                                        android:text=" 0 "
+                                        android:textAlignment="center"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                        android:textColor="@color/dark_gray"
+                                        android:textStyle="normal" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:background="@drawable/bg_chat_screen"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/_5sdp">
+
+                                <LinearLayout
+                                    android:id="@+id/llPostShare"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/_24sdp"
+                                        android:layout_height="@dimen/_24sdp"
+                                        android:padding="@dimen/_2sdp"
+                                        android:src="@drawable/share"
+                                        app:tint="@color/gray_blue" />
+                                    <TextView
+                                        android:id="@+id/shareCounterTV"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="3dp"
+                                        android:gravity="center"
+                                        android:text=" 0 "
+                                        android:textAlignment="center"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                        android:textColor="@color/dark_gray"
+                                        android:textStyle="normal" />
+
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/commentRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/header"
+                    tools:listitem="@layout/lyt_coment_row"
+                    tools:itemCount="10"
+                    />
+
+            </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/sendLyt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white">
+            <LinearLayout
+                android:id="@+id/sendBoxLyt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/bg_comment_screen"
+                android:layout_margin="@dimen/_10sdp">
+
+                <EditText
+                    android:id="@+id/messageEt"
+                    android:layout_width="364dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="Aa"
+                    android:inputType="textMultiLine"
+                    android:padding="@dimen/_10sdp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/black" />
+
+                <ImageButton
+                    android:id="@+id/ibSend"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:background="@android:color/transparent"
+                    android:padding="10dp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:src="@drawable/ic_send_30"
+                    android:tint="@color/darkyellow" />
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
+
+
+
+</LinearLayout>

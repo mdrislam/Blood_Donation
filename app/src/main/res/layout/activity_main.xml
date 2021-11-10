@@ -38,6 +38,7 @@
         app:itemIconTint="@color/red"
         app:itemTextColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav" />
 
 </RelativeLayout>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.activity.InsertDonateActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_10sdp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Name of Hospital"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/dark_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_comment_screen"
+                >
+
+                <EditText
+                    android:id="@+id/etHospitalName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:backgroundTint="@color/red_light500"
+                    android:gravity="top|left"
+                    android:hint="Hospital name"
+                    android:inputType="textMultiLine"
+                    android:padding="10dp"
+                    android:scrollbars="vertical"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Address of Hospital"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/dark_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_comment_screen"
+                >
+
+                <EditText
+                    android:id="@+id/eTaddressOfHospital"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:backgroundTint="@color/red_light500"
+                    android:gravity="top|left"
+                    android:hint="Hospital address"
+                    android:inputType="textMultiLine"
+                    android:padding="10dp"
+                    android:scrollbars="vertical"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/icon"
+                android:gravity="start"
+                android:text="Donate Date"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/dark_gray"
+                android:textStyle="normal" />
+
+            <LinearLayout
+                android:id="@+id/tvTimeDateSelect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/bg_comment_screen"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvSelectDateTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_calendar"
+                    android:drawableTint="@color/dark_gray"
+                    android:padding="10dp"
+                    android:text=" Date &amp; Time"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/llInsert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_button_redious"
+                android:padding="@dimen/_5sdp"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnUpdate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_button_redious_delete"
+                android:padding="@dimen/_5sdp"
+                android:text="Update"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_button_redious"
+                android:padding="@dimen/_5sdp"
+                android:text="Delete"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

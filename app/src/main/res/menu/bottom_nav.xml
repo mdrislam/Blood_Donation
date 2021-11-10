@@ -6,9 +6,10 @@
         android:icon="@drawable/ic_home"
         android:title="@string/title_home" />
 
+
     <item
         android:id="@+id/messagingFragment2"
-        android:icon="@drawable/chat_icon_64"
+        android:icon="@drawable/message_icon"
         android:title="@string/title_messaging" />
 
     <item

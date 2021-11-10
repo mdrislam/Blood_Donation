@@ -263,7 +263,7 @@ public class SendMessageActivity extends AppCompatActivity {
                         if (chatModel.getReceiver().equals(myId) && chatModel.getSender().equals(userId)
                                 || chatModel.getSender().equals(myId) && chatModel.getReceiver().equals(userId)) {
                             chatModelList.add(chatModel);
-                            Log.e(TAG, " Data Model: " + chatModel.toString());
+                            //Log.e(TAG, " Data Model: " + chatModel.toString());
                         }
                     }
                     adapter = new MessageAdapter(SendMessageActivity.this, chatModelList, imageUrl);
@@ -305,6 +305,7 @@ public class SendMessageActivity extends AppCompatActivity {
     }
 
     private void seenMessage(final String userId) {
+
         reference = FirebaseDatabase.getInstance().getReference("Chats");
 
         seenLesenner = reference.addValueEventListener(new ValueEventListener() {
@@ -317,6 +318,7 @@ public class SendMessageActivity extends AppCompatActivity {
                             HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("isseen", true);
                             snap.getRef().updateChildren(hashMap);
+                            Log.e(TAG, "seenMessage: "+"" );
 
                         }
                     }
@@ -353,6 +355,13 @@ public class SendMessageActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        reference.removeEventListener(seenLesenner);
+        super.onDestroy();
+
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         if (getIntent().getExtras().getBoolean("status")) {
@@ -362,6 +371,7 @@ public class SendMessageActivity extends AppCompatActivity {
         } else {
 
             overridePendingTransition(R.anim.no_animation, R.anim.slide_down);
+
             finish();
         }
 

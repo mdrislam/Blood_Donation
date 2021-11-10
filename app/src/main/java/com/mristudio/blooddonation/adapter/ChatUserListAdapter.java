@@ -1,7 +1,9 @@
 package com.mristudio.blooddonation.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -133,20 +135,37 @@ public class ChatUserListAdapter extends RecyclerView.Adapter<ChatUserListAdapte
     //Cheak for Last Message
     private void lastMessage(String userId, TextView last_msg) {
         theLastMsg = "default";
+        List<ChatModel> chatModelList = new ArrayList<>();
         FirebaseUser currentuser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 if (dataSnapshot.exists()) {
+                    chatModelList.clear();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         ChatModel chatModel = snapshot.getValue(ChatModel.class);
                         if (chatModel.getReceiver().equals(currentuser.getUid()) && chatModel.getSender().equals(userId) ||
                                 chatModel.getReceiver().equals(userId) && chatModel.getSender().equals(currentuser.getUid())) {
                             theLastMsg = chatModel.getMessage();
+                            chatModelList.add(chatModel);
                         }
 
                     }
+                    if (!chatModelList.isEmpty()) {
+
+                        if (chatModelList.get(chatModelList.size() - 1).getIsseen()) {
+                            last_msg.setTextColor(context.getResources().getColor(R.color.overlay_white));
+                            last_msg.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f);
+                            last_msg.setTypeface(null, Typeface.NORMAL);
+                        } else {
+                            last_msg.setTextColor(context.getResources().getColor(R.color.black));
+                            last_msg.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
+                            last_msg.setTypeface(null, Typeface.BOLD);
+                        }
+                    }
+
                     switch (theLastMsg) {
                         case "default":
                             last_msg.setText("No Message");

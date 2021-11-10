@@ -14,7 +14,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -24,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mristudio.blooddonation.R;
 import com.mristudio.blooddonation.model.RequestModel;
-import com.mristudio.blooddonation.utility.UtilsClass;
+import com.mristudio.blooddonation.utility.Time_Utils;
 import com.mristudio.blooddonation.view.activity.DonnerProfileActivity;
 import com.mristudio.blooddonation.view.activity.PostDetailsActivity;
 import com.squareup.picasso.Picasso;
@@ -36,18 +35,16 @@ import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
-import static android.content.ContentValues.TAG;
-
-public class HomeDemoAdapter extends RecyclerView.Adapter<HomeDemoAdapter.OnViewHoalder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.OnViewHoalder> {
 
 
-    private static final String TAG = "HomeDemoAdapter";
+    private static final String TAG = "HomeAdapter";
     private static Context mContext;
 
     List<RequestModel> postRequests = new ArrayList<>();
 
 
-    public HomeDemoAdapter(Context mContext, List<RequestModel> postRequests) {
+    public HomeAdapter(Context mContext, List<RequestModel> postRequests) {
         this.mContext = mContext;
 
         this.postRequests = postRequests;
@@ -66,9 +63,12 @@ public class HomeDemoAdapter extends RecyclerView.Adapter<HomeDemoAdapter.OnView
     public void onBindViewHolder(@NonNull OnViewHoalder holder, final int position) {
 
         RequestModel requestModel = postRequests.get(position);
+
+
         holder.tVProfileName.setText(postRequests.get(position).getUserProfileName());
         holder.tvLokingFor.setText(" Loking for " + postRequests.get(position).getBloodGroup());
-        // holder.tvAddressAndMinutes.settext("");
+        //4 minutes ago -155/B,East-Razabazar,Dhaka-1215
+        // holder.tvAddressAndMinutes.setText(Time_Utils.getTimesAgo(requestModel.getPostDateTime()+" - "+requestModel.getAddressofHospital()));
         holder.tVDetails.setText(postRequests.get(position).getRequestMessage());
         holder.tVBloodName.setText(postRequests.get(position).getBloodGroup());
         holder.tVReqAccepted.setText(requestModel.getTotalAccept()+" Accepted");
@@ -91,24 +91,6 @@ public class HomeDemoAdapter extends RecyclerView.Adapter<HomeDemoAdapter.OnView
             Picasso.get().load(postRequests.get(position).getUserProfileImageUrl()).into(holder.ivProfileImage);
         }
 
-        if (requestModel.getLovesList() != null) {
-            //Cheak User Loging Status
-            if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-                if (requestModel.getLovesList().contains(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-
-                    holder.iVLike.setImageResource(R.drawable.ic_favorite_cheak);
-
-
-                } else {
-                    holder.iVLike.setImageResource(R.drawable.ic_favorite_border_un);
-
-
-                }
-            } else {
-                Toasty.error(mContext, "You are not Registred User !", Toasty.LENGTH_SHORT).show();
-            }
-        }
-        //Log.e(TAG, "onBindViewHolder: " + postRequests.get(position).toString());
         holder.ivProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

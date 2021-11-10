@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/relativeLyt"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="@dimen/dimen_15dp">
+    android:padding="@dimen/_5sdp">
 
     <LinearLayout
+        android:id="@+id/ll_Click"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/bg_color"
+        android:padding="@dimen/_10sdp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -97,13 +100,7 @@
 
         </LinearLayout>
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/light_gray"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-        android:layout_marginLeft="@dimen/_10sdp"/>
+
 
 
 </LinearLayout>

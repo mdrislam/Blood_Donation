@@ -241,9 +241,8 @@ public class FindDonnerActivity extends AppCompatActivity {
                             addressArray.getLocality(), imagePath,
                             couseOfBlood, gender, finalDate,
                             finalTime, units, cheakBox,
-                            0,
-                            0, userProfileName,
-                            userProfileImg, postDateTime);
+                            userProfileName,
+                            userProfileImg, postDateTime, "request");
 
                     mstorageReference = FirebaseStorage.getInstance().getReference("userSlidersImages");
                     final StorageReference imageRefarence = mstorageReference.child(System.currentTimeMillis() + "." + getFileExtension(pickedImage));

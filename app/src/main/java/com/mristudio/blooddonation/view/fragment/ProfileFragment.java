@@ -1,5 +1,6 @@
 package com.mristudio.blooddonation.view.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -28,7 +29,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.mristudio.blooddonation.R;
+import com.mristudio.blooddonation.view.activity.HistoryActivity;
 import com.mristudio.blooddonation.view.activity.MainActivity;
+import com.mristudio.blooddonation.view.activity.PostDetailsActivity;
 import com.mristudio.blooddonation.view.activity.UserSignInActivity;
 
 import java.util.HashMap;
@@ -154,10 +157,21 @@ public class ProfileFragment extends Fragment {
                 alertDialog.show();
             }
         });
+
         ivHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toasty.success(getActivity(), "History", Toasty.LENGTH_SHORT).show();
+               // Toasty.success(getActivity(), "History", Toasty.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), HistoryActivity.class);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
+            }
+        });
+
+        ivReportToDeveloper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
@@ -184,19 +198,12 @@ public class ProfileFragment extends Fragment {
 
         TextView tittleTv = MainActivity.toolbar.findViewById(R.id.toolbar_Hompage_titleTV);
         tittleTv.setText("LPI BLOOD BANK");
-//        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(false);
-        // MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
 
-//        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(false);
-        //MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
     }
 }

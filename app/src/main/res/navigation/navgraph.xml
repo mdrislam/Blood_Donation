@@ -24,4 +24,5 @@
         android:id="@+id/homeFragment"
         android:name="com.mristudio.blooddonation.view.fragment.HomeFragment"
         android:label="HomeFragment" />
+
 </navigation>
